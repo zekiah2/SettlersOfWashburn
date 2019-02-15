@@ -1,28 +1,23 @@
-package SettlersOfWashburn;
+package settlersofwashburn;
 import java.awt.*;
-import java.awt.event.*;
 import javax.swing.*;
 import java.io.*;
-import java.net.*;
-import javax.imageio.ImageIO;
+import static javax.swing.JFrame.EXIT_ON_CLOSE;
 
-public class ChatClient extends JFrame
+public class LobbyFrame extends JFrame
 {
-  private JTextField messageField;
-  private JTextArea chatTA;
-  private JButton sendButton;
-  private JButton quitButton;
-  private JButton startButton;
-  private PrintWriter out;
-  private BufferedReader in;
+  JTextField messageField;
+  JTextArea chatTA;
+  JButton sendButton;
+  JButton quitButton;
+  JButton startButton;
   private JTextArea playersTA;
   private JPanel buttonPanel;
   private  GridBagConstraints gbc= new GridBagConstraints();
-  public ChatClient() throws java.net.BindException
+  public LobbyFrame()
   {
     this.setLayout(new GridBagLayout());
-    ActionHandler ah=new ActionHandler();
-    KeyHandler kh=new KeyHandler();
+
 
     JMenuBar jmb=new JMenuBar();
     setJMenuBar(jmb);
@@ -55,12 +50,10 @@ public class ChatClient extends JFrame
     add(bottomPanel,gbc);
     
     messageField=new JTextField(50);
-    messageField.addKeyListener(kh);
     bottomPanel.add(messageField);
 
     sendButton=new JButton("Send");
     sendButton.setEnabled(true);
-    sendButton.addActionListener(ah);
     bottomPanel.add(sendButton);
     
     playersTA= new JTextArea();
@@ -76,7 +69,7 @@ public class ChatClient extends JFrame
 
     buttonPanel= new JPanel();
     buttonPanel.add(quitButton = new JButton("Quit"));
-    buttonPanel.add(quitButton = new JButton("Start"));
+    buttonPanel.add(startButton = new JButton("Start"));
     gbc.gridx=1;
     gbc.gridy=1;
     gbc.gridwidth=1;
@@ -91,65 +84,4 @@ public class ChatClient extends JFrame
     setResizable(false);
     setVisible(true);
   }
-  
-
-   public void connect(String ip, String name){
-              try
-        {
-          Socket s=new Socket("localhost",5025);
-          out=new PrintWriter(s.getOutputStream(),true);
-          out.println(name);
-          in=new BufferedReader(new InputStreamReader(s.getInputStream()));
-          new WorkerThread().start();
-        }
-        catch(IOException ioe) {System.out.println(ioe);}
-  }
-  private class ActionHandler implements ActionListener
-  {
-    public void actionPerformed(ActionEvent e)
-    {
-      if(e.getSource()==sendButton)
-      {
-        out.println(messageField.getText());
-        messageField.setText("");
-      }
-    }
-  }
-
-  private class WorkerThread extends Thread
-  {
-    public void run()
-    {
-      try
-      {
-        String line;
-        while((line=in.readLine())!=null)
-        {
-          chatTA.append("\n"+line);
-        }
-      }
-      catch(IOException ioe) {System.out.println(ioe);}
-    }
-  }
-
-  private class KeyHandler extends KeyAdapter
-  {
-    public void keyTyped(KeyEvent e)
-    {
-      if(e.getKeyChar()==KeyEvent.VK_ENTER)
-      {
-        out.println(messageField.getText());
-        messageField.setText("");
-      }
-    }
-  }
-
-  public static void main(String[] args)
-  {
-    try{
-    new ChatClient();
-      }
-    catch(java.net.BindException e){}
-  }
 }
-

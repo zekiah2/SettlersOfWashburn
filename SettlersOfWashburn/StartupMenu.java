@@ -1,4 +1,4 @@
-package SettlersOfWashburn;
+package settlersofwashburn;
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -9,7 +9,6 @@ package SettlersOfWashburn;
  *
  * @author Jacob
  */
-import SettlersOfWashburn.HostClient;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
@@ -38,12 +37,12 @@ public class StartupMenu {
         public void actionPerformed(ActionEvent e) {
             if(e.getSource() == joinButton){
             menuFrame.setVisible(false);
-            new UserClient();
+            new JoinGameMenu();
             }
             if(e.getSource() == hostButton)
             {
                 menuFrame.setVisible(false);
-                new HostClient();
+                new HostingGameMenu();
             }
         }
     }
