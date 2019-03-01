@@ -70,9 +70,5 @@ public class HostingGameMenu
             new GameServer();
         }
     }
-    public static void main(String args[])
-    {
-        new HostingGameMenu();
-    }
 }
     
