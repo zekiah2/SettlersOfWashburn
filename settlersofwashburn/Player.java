@@ -18,6 +18,7 @@ public class Player {
     public static final int BLUE = 2;
     public static final int RED = 3;
    
+    private Hand hand;
     private int color;
     private String name;
     private PrintWriter out;
@@ -25,6 +26,7 @@ public class Player {
     {
         this.name=name;
         this.out=out;
+        hand = new Hand();
     }
     public PrintWriter getPrintWriter()
     {

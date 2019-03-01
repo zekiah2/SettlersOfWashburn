@@ -60,8 +60,4 @@ public class JoinGameMenu
             loginFrame.setVisible(false);
         }
     }
-    public static void main(String args[])
-    {
-        new JoinGameMenu();
-    }
 }
