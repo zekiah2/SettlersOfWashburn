@@ -4,9 +4,9 @@ import java.io.*;
 
 class Board
 {
-	Side[] sideArray;
-	Point[] pointArray;
-	Tile[] tileArray;
+	private Side[] sideArray;
+	private Point[] pointArray;
+	private Tile[] tileArray;
 
 	public Board()
 	{
