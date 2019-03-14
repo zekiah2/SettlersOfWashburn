@@ -10,7 +10,6 @@ public class GameServer {
 
     private ArrayList<Player> players;
     private boolean acceptingPlayers = true;
-    private Dice dice = new Dice();
 
     public GameServer() {
         try {
@@ -56,13 +55,12 @@ public class GameServer {
                     synchronized (players) {
                         for (int i = 0; i < players.size(); i++) {
                             if (line.startsWith("/")) {
-                                if (line.equals("/start")) {
-                                    int firstPlayer = (int) Math.random() * players.size() + 1;
+                                if (line.startsWith("/start")) {
                                     if (players.size() >= 3 && players.size() <= 4) {
                                         acceptingPlayers = false;
                                         synchronized (players) {
                                             for (i = 0; i < players.size(); i++) {
-                                                players.get(i).getPrintWriter().println(line);
+                                                players.get(i).getPrintWriter().println((String)line+" "+players.size());
                                             }
                                         }
                                         synchronized (players) {
@@ -78,19 +76,60 @@ public class GameServer {
                                             }
                                         }
                                         synchronized (players){
-                                        for (i = 0; i < players.size(); i++) {
-                                            if (i == firstPlayer) {
-                                                for (int k = 0; k < players.size(); k++) {
-                                                players.get(k).getPrintWriter().println(players.get(i).getName() + " will be going first");
-                                                }
+                                            for(i=0;i < players.size();i++){
+                                               if(players.get(i).getColorString().equals("white")){
+                                                   players.get(i).hand.addCard(new Card(Card.WOOL));
+                                                   players.get(i).getPrintWriter().println("/addCard wool");
+                                                   players.get(i).hand.addCard(new Card(Card.ORE));
+                                                   players.get(i).getPrintWriter().println("/addCard ore");
+                                                   players.get(i).hand.addCard(new Card(Card.LUMBER));
+                                                   players.get(i).getPrintWriter().println("/addCard lumber");
+                                               } 
+                                               if(players.get(i).getColorString().equals("orange")){
+                                                   players.get(i).hand.addCard(new Card(Card.WOOL));
+                                                   players.get(i).getPrintWriter().println("/addCard wool");
+                                                   players.get(i).hand.addCard(new Card(Card.GRAIN));
+                                                   players.get(i).getPrintWriter().println("/addCard grain");
+                                                   players.get(i).hand.addCard(new Card(Card.LUMBER));
+                                                   players.get(i).getPrintWriter().println("/addCard lumber");
+                                               } 
+                                               if(players.get(i).getColorString().equals("blue")){
+                                                   players.get(i).hand.addCard(new Card(Card.WOOL));
+                                                   players.get(i).getPrintWriter().println("/addCard wool");
+                                                   players.get(i).hand.addCard(new Card(Card.ORE));
+                                                   players.get(i).getPrintWriter().println("/addCard ore");
+                                                   players.get(i).hand.addCard(new Card(Card.BRICK));
+                                                   players.get(i).getPrintWriter().println("/addCard brick");
+                                               } 
+                                               if(players.get(i).getColorString().equals("red")){
+                                                   players.get(i).hand.addCard(new Card(Card.WOOL));
+                                                   players.get(i).getPrintWriter().println("/addCard wool");
+                                                   players.get(i).hand.addCard(new Card(Card.GRAIN));
+                                                   players.get(i).getPrintWriter().println("/addCard grain");
+                                                   players.get(i).hand.addCard(new Card(Card.LUMBER));
+                                                   players.get(i).getPrintWriter().println("/addCard lumber");
+                                               } 
                                             }
                                         }
-                                      }
                                     } else {
                                         players.get(i).getPrintWriter().println("You must have 3 players minumum and 4 players maximum to start a game");
                                     }
-                                } else if (line.equals("/help")) {
-                                    players.get(i).getPrintWriter().println("/start: starts up a new game if the approperate number of players are in the lobby");
+                                }
+                                if (line.startsWith("/addCard")) 
+                                {
+                                    synchronized (players){
+                                    String[] temp= line.split("\\s+");
+                                    for(i=0;i<players.size();i++){
+                                        if(players.get(i).getColorString().equals(temp[2])){
+                                            players.get(i).getPrintWriter().println("/addCard "+temp[1]);
+                                        }
+                                    }    
+                                    }
+                                }
+                                else if (line.equals("/help")) {
+                                    players.get(i).getPrintWriter().println("/start NumOfPlayers: starts up a new game if the approperate number of players are in the lobby "
+                                            + "and NumOfPlayers represents the number of players in the game");
+                                    players.get(i).getPrintWriter().println("/addCard cardName playerColor: this command expects the name of the card followed by the color of the player you are adding the card to.");
                                 } else {
                                     players.get(i).getPrintWriter().println(line + " Is not a recognized command type /help for a list of commands");
                                 }

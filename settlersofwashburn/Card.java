@@ -18,11 +18,13 @@ public class Card
     public static final int LUMBER=4;
     
     private int type;
-    
-    private void setType(int type){
+    public Card(int type){
         this.type=type;
     }
-    private int getType(){
+    public void setType(int type){
+        this.type=type;
+    }
+    public  int getType(){
         return type;
     }
 }
