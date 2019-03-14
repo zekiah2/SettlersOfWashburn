@@ -14,9 +14,11 @@ import java.awt.event.*;
 import javax.swing.*;
 
 public class StartupMenu {
+
     JFrame menuFrame;
-        JButton hostButton;
-        JButton joinButton;
+    JButton hostButton;
+    JButton joinButton;
+
     public StartupMenu() {
         menuFrame = new JFrame("Settlers Of Washburn");
         JPanel menuPanel = new JPanel();
@@ -34,13 +36,13 @@ public class StartupMenu {
     }
 
     class buttonListener implements ActionListener {
+
         public void actionPerformed(ActionEvent e) {
-            if(e.getSource() == joinButton){
-            menuFrame.setVisible(false);
-            new JoinGameMenu();
+            if (e.getSource() == joinButton) {
+                menuFrame.setVisible(false);
+                new JoinGameMenu();
             }
-            if(e.getSource() == hostButton)
-            {
+            if (e.getSource() == hostButton) {
                 menuFrame.setVisible(false);
                 new HostingGameMenu();
             }

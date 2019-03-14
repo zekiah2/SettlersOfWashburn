@@ -11,7 +11,7 @@ public class Client extends JFrame
 {
   String gameState= "lobby";
   LobbyFrame lobby;
-  GameFrame game;
+  cFrame game;
   private PrintWriter out;
   private BufferedReader in;
   public Client() throws java.net.BindException
@@ -46,14 +46,51 @@ public class Client extends JFrame
         String line;
         while((line=in.readLine())!=null)
         {
-            if(line.equals("/start"))
+            if(line.startsWith("/start"))
             {
                 lobby.setVisible(false);
-                game= new GameFrame();
-                game.messageField.addKeyListener(new KeyHandler());
-                game.sendButton.addActionListener(new ActionHandler());
+                game=  new cFrame("Settlers Of Washburn");
                 //game.chatTA.append("\n"+line);
                 gameState= "game";
+                game.gbPanel.board.pointArray[12].setSettlementColor(Color.WHITE);
+                game.gbPanel.board.sideArray[12].setColor(Color.WHITE);
+                game.gbPanel.board.pointArray[41].setSettlementColor(Color.WHITE);
+                game.gbPanel.board.sideArray[59].setColor(Color.WHITE);
+                game.gbPanel.board.pointArray[10].setSettlementColor(Color.ORANGE);
+                game.gbPanel.board.sideArray[16].setColor(Color.ORANGE);
+                game.gbPanel.board.pointArray[25].setSettlementColor(Color.ORANGE);
+                game.gbPanel.board.sideArray[37].setColor(Color.ORANGE);
+                game.gbPanel.board.pointArray[39].setSettlementColor(Color.BLUE);
+                game.gbPanel.board.sideArray[50].setColor(Color.BLUE);
+                game.gbPanel.board.pointArray[49].setSettlementColor(Color.BLUE);
+                game.gbPanel.board.sideArray[69].setColor(Color.BLUE);
+                String[] temp=line.split("\\s+");
+                if(temp[1].equals("4")){
+                game.gbPanel.board.pointArray[18].setSettlementColor(Color.RED);
+                game.gbPanel.board.sideArray[20].setColor(Color.RED);
+                game.gbPanel.board.pointArray[30].setSettlementColor(Color.RED);
+                game.gbPanel.board.sideArray[36].setColor(Color.RED);
+                game.chatPanel.messageField.addKeyListener(new KeyHandler());
+                game.chatPanel.sendButton.addActionListener(new ActionHandler());
+                }
+              }
+            if(line.startsWith("/addCard ")){
+            String[] temp= line.split("\\s+");
+            if(temp[1].equals("wool")){
+                game.phPanel.woolPanel.addCtr();
+            }
+            if(temp[1].equals("brick")){
+                game.phPanel.brickPanel.addCtr();
+            }
+            if(temp[1].equals("grain")){
+                game.phPanel.grainPanel.addCtr();
+            }
+            if(temp[1].equals("lumber")){
+                game.phPanel.lumberPanel.addCtr();
+            }
+            if(temp[1].equals("ore")){
+                game.phPanel.orePanel.addCtr();
+            }
             }
             else
             {
@@ -63,7 +100,7 @@ public class Client extends JFrame
                 }
                 else 
                 {
-                game.chatTA.append("\n"+line);   
+                game.chatPanel.Chat.append("\n"+line);   
                 }
             }
         }
@@ -88,10 +125,10 @@ public class Client extends JFrame
       {
           System.exit(0);
       }
-      if(e.getSource() == game.sendButton)
+      if(e.getSource() == game.chatPanel.sendButton)
       {
-        out.println(game.messageField.getText());
-        game.messageField.setText("");
+        out.println(game.chatPanel.messageField.getText());
+        game.chatPanel.messageField.setText("");
       }
     }
   }
@@ -108,8 +145,8 @@ public class Client extends JFrame
         }
         if(gameState.equals("game"))
         {
-        out.println(game.messageField.getText());
-        game.messageField.setText("");
+        out.println(game.chatPanel.messageField.getText());
+        game.chatPanel.messageField.setText("");
         }
       }
     }

@@ -12,17 +12,51 @@ import java.util.ArrayList;
  * @author Jacob
  */
 public class Hand {
-    private ArrayList<Card> hand;
+    private ArrayList<Card> brick;
+    private ArrayList<Card> wool;
+    private ArrayList<Card> ore;
+    private ArrayList<Card> grain;
+    private ArrayList<Card> lumber;
     public Hand(){
-        hand= new ArrayList<Card>();
+        brick= new ArrayList<Card>();
+        wool= new ArrayList<Card>();
+        ore= new ArrayList<Card>();
+        grain= new ArrayList<Card>();
+        lumber= new ArrayList<Card>();
     }
     public void addCard(Card card){
-        hand.add(card);
+        if(card.getType() == Card.BRICK){
+           brick.add(card);
+        }
+        if(card.getType() == Card.BRICK){
+           wool.add(card);
+        }
+        if(card.getType() == Card.BRICK){
+           ore.add(card);
+        }
+        if(card.getType() == Card.BRICK){
+           grain.add(card);
+        }
+        if(card.getType() == Card.BRICK){
+           lumber.add(card);
+        }
+        
     }
     public void removeCard(Card card){
-        hand.remove(card);
-    }
-    public Object[] getHand(){
-        return hand.toArray();
+        if(card.getType() == Card.BRICK){
+           brick.remove(0);
+        }
+        if(card.getType() == Card.BRICK){
+           wool.remove(0);
+        }
+        if(card.getType() == Card.BRICK){
+           ore.remove(0);
+        }
+        if(card.getType() == Card.BRICK){
+           grain.remove(0);
+        }
+        if(card.getType() == Card.BRICK){
+           lumber.remove(0);
+        }
     }
 }
