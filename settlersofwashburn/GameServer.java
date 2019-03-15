@@ -60,7 +60,7 @@ public class GameServer {
                                         acceptingPlayers = false;
                                         synchronized (players) {
                                             for (i = 0; i < players.size(); i++) {
-                                                players.get(i).getPrintWriter().println((String)line+" "+players.size());
+                                                players.get(i).getPrintWriter().println((String)"/start "+players.size());
                                             }
                                         }
                                         synchronized (players) {
@@ -115,7 +115,7 @@ public class GameServer {
                                         players.get(i).getPrintWriter().println("You must have 3 players minumum and 4 players maximum to start a game");
                                     }
                                 }
-                                if (line.startsWith("/addCard")) 
+                                 else if (line.startsWith("/addCard")) 
                                 {
                                     synchronized (players){
                                     String[] temp= line.split("\\s+");
@@ -133,7 +133,9 @@ public class GameServer {
                                 } else {
                                     players.get(i).getPrintWriter().println(line + " Is not a recognized command type /help for a list of commands");
                                 }
-                            } else {
+                            } 
+                            else 
+                            {
                                 players.get(i).getPrintWriter().println(name + ": " + line);
                             }
                         }
