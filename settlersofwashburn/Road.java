@@ -14,6 +14,8 @@ import java.awt.Dimension;
 import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.Rectangle;
+import java.awt.Shape;
+import java.awt.geom.Point2D;
 import java.util.ArrayList;
 import javax.swing.JPanel;
 
@@ -35,6 +37,7 @@ public class Road extends Rectangle
     private ArrayList<Road> adjacentSides;
     private ArrayList<Integer> adjacentPoints;
     private Color color = Color.BLACK;
+    private Shape hitBox;
     public Road()
     {
         adjacentSides = new ArrayList<Road>();
@@ -49,8 +52,8 @@ public class Road extends Rectangle
     }
     public Road(double[] p)
     {
-        setLocation((int)p[0],(int)p[1]);
-        setSize(new Dimension((int)Math.pow((xUnit*xUnit)+(yUnit*yUnit), .5),6));
+        setLocation((int)p[0]+10,(int)p[1]-3);
+        setSize(new Dimension((int)Math.pow((xUnit*xUnit)+(yUnit*yUnit), .5)-20,6));
         adjacentSides = new ArrayList<Road>();
 	adjacentPoints = new ArrayList<Integer>();
     }
@@ -169,5 +172,19 @@ public class Road extends Rectangle
     public void setColor(Color t)
     {
         color = t;
+    }
+    public void setTranslation()
+    {
+        hitBox = g2d.getTransform().createTransformedShape(this);
+    }
+    public boolean hit(Point2D p)
+    {
+        if(hitBox.contains(p)) return true;
+        else return false;
+    }
+    public boolean hit(double x, double y)
+    {
+        if(hitBox.contains(x,y)) return true;
+        else return false;
     }
 }
