@@ -22,6 +22,7 @@ class Settlement extends Component {
 		private ArrayList<Integer> adjacentTiles;
 		private double[] boardCoords;
 		private Color pointColor;
+                private int owner = -1;
 
 		public Settlement()
 		{
@@ -127,4 +128,10 @@ class Settlement extends Component {
 		{
 			return pointColor;
 		}		
+                public void setOwner(int owner){
+                    this.owner=owner;
+                }
+                public int getOwner(){
+                    return owner;
+                }
 }

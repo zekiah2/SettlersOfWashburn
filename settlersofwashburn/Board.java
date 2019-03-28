@@ -720,26 +720,26 @@ class Board extends JPanel {
         pointArray[52].add2Points(48, 49);
         pointArray[53].add2Points(49, 50);
 
-        tileArray[0] = new Tile("FOREST", 11, pointArray, new int[]{0, 4, 8, 12, 7, 3, 0}, Color.GREEN.darker().darker());
-        tileArray[1] = new Tile("PASTURE", 12, pointArray, new int[]{1, 5, 9, 13, 8, 4, 1}, Color.GREEN);
-        tileArray[2] = new Tile("FIELDS", 9, pointArray, new int[]{2, 6, 10, 14, 9, 5, 2}, Color.YELLOW);
-        tileArray[3] = new Tile("HILLS", 4, pointArray, new int[]{7, 12, 17, 22, 16, 11, 7}, Color.ORANGE.darker());
-        tileArray[4] = new Tile("MOUNTAINS", 6, pointArray, new int[]{8, 13, 18, 23, 17, 12, 8}, Color.GRAY);
-        tileArray[5] = new Tile("HILLS", 5, pointArray, new int[]{9, 14, 19, 24, 18, 13, 9}, Color.ORANGE.darker());
-        tileArray[6] = new Tile("PASTURE", 10, pointArray, new int[]{10, 15, 20, 25, 19, 14, 10}, Color.GREEN);
+        tileArray[0] = new Tile("lumber", 11, pointArray, new int[]{0, 4, 8, 12, 7, 3, 0}, Color.GREEN.darker().darker());
+        tileArray[1] = new Tile("wool", 12, pointArray, new int[]{1, 5, 9, 13, 8, 4, 1}, Color.GREEN);
+        tileArray[2] = new Tile("grain", 9, pointArray, new int[]{2, 6, 10, 14, 9, 5, 2}, Color.YELLOW);
+        tileArray[3] = new Tile("brick", 4, pointArray, new int[]{7, 12, 17, 22, 16, 11, 7}, Color.ORANGE.darker());
+        tileArray[4] = new Tile("ore", 6, pointArray, new int[]{8, 13, 18, 23, 17, 12, 8}, Color.GRAY);
+        tileArray[5] = new Tile("brick", 5, pointArray, new int[]{9, 14, 19, 24, 18, 13, 9}, Color.ORANGE.darker());
+        tileArray[6] = new Tile("wool", 10, pointArray, new int[]{10, 15, 20, 25, 19, 14, 10}, Color.GREEN);
 
         tileArray[7] = new Tile("DESERT", 5, pointArray, new int[]{16, 22, 28, 33, 27, 21, 16}, Color.GREEN);
-        tileArray[8] = new Tile("FOREST", 3, pointArray, new int[]{17, 23, 29, 34, 28, 22, 17}, Color.GREEN.darker().darker());
-        tileArray[9] = new Tile("FIELDS", 11, pointArray, new int[]{18, 24, 30, 35, 29, 23, 18}, Color.YELLOW);
-        tileArray[10] = new Tile("FOREST", 4, pointArray, new int[]{19, 25, 31, 36, 30, 24, 19}, Color.GREEN.darker().darker());
-        tileArray[11] = new Tile("FIELDS", 8, pointArray, new int[]{20, 26, 32, 37, 31, 25, 20}, Color.YELLOW);
-        tileArray[12] = new Tile("HILLS", 8, pointArray, new int[]{28, 34, 39, 43, 38, 33, 28}, Color.ORANGE.darker());
-        tileArray[13] = new Tile("PASTURE", 10, pointArray, new int[]{29, 35, 40, 44, 39, 34, 29}, Color.GREEN);
-        tileArray[14] = new Tile("PASTURE", 9, pointArray, new int[]{30, 36, 41, 45, 40, 35, 30}, Color.GREEN);
-        tileArray[15] = new Tile("MOUNTAINS", 3, pointArray, new int[]{31, 37, 42, 46, 41, 36, 31}, Color.GRAY);
-        tileArray[16] = new Tile("MOUNTAINS", 5, pointArray, new int[]{39, 44, 48, 51, 47, 43, 39}, Color.GRAY);
-        tileArray[17] = new Tile("FIELDS", 2, pointArray, new int[]{40, 45, 49, 52, 48, 44, 40}, Color.YELLOW);
-        tileArray[18] = new Tile("FOREST", 6, pointArray, new int[]{41, 46, 50, 53, 49, 45, 41}, Color.GREEN.darker().darker());
+        tileArray[8] = new Tile("lumber", 3, pointArray, new int[]{17, 23, 29, 34, 28, 22, 17}, Color.GREEN.darker().darker());
+        tileArray[9] = new Tile("grain", 11, pointArray, new int[]{18, 24, 30, 35, 29, 23, 18}, Color.YELLOW);
+        tileArray[10] = new Tile("lumber", 4, pointArray, new int[]{19, 25, 31, 36, 30, 24, 19}, Color.GREEN.darker().darker());
+        tileArray[11] = new Tile("grain", 8, pointArray, new int[]{20, 26, 32, 37, 31, 25, 20}, Color.YELLOW);
+        tileArray[12] = new Tile("brick", 8, pointArray, new int[]{28, 34, 39, 43, 38, 33, 28}, Color.ORANGE.darker());
+        tileArray[13] = new Tile("wool", 10, pointArray, new int[]{29, 35, 40, 44, 39, 34, 29}, Color.GREEN);
+        tileArray[14] = new Tile("wool", 9, pointArray, new int[]{30, 36, 41, 45, 40, 35, 30}, Color.GREEN);
+        tileArray[15] = new Tile("ore", 3, pointArray, new int[]{31, 37, 42, 46, 41, 36, 31}, Color.GRAY);
+        tileArray[16] = new Tile("ore", 5, pointArray, new int[]{39, 44, 48, 51, 47, 43, 39}, Color.GRAY);
+        tileArray[17] = new Tile("grain", 2, pointArray, new int[]{40, 45, 49, 52, 48, 44, 40}, Color.YELLOW);
+        tileArray[18] = new Tile("lumber", 6, pointArray, new int[]{41, 46, 50, 53, 49, 45, 41}, Color.GREEN.darker().darker());
         
         
 
