@@ -7,14 +7,16 @@ import javax.swing.*;
 public class GameBoardPanel extends JPanel
 {
     public Board board;
-	public GameBoardPanel()
+    private Client client;
+	public GameBoardPanel(Client eclient)
 	{
+                client =eclient;
 		//Dimension size = getPreferredSize();
 		//size.width = 250;
 		//size.height = 300;
 		//setPreferredSize(size);
 		//this.setBackground(Color.BLUE);
-		board = new Board();
+		board = new Board(client);
 		Dimension d = new Dimension(800, 750);
 		board.setPreferredSize(d);
 		add(board);

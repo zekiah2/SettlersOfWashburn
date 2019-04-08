@@ -22,7 +22,7 @@ public class Tile extends Polygon {
     private Polygon tile;
     private int centerX;
     private int centerY;
-    public Settlement[] tileSettlements;
+    private Settlement[] tileSettlements;
 
     public Tile(String name, int number, Settlement[] points, int[] hexPoint, Color c) {
         this.p = p;
