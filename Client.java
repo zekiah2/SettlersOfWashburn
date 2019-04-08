@@ -1,19 +1,3 @@
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 package settlersofwashburn;
 
 import java.awt.*;
@@ -171,29 +155,6 @@ public class Client extends JFrame {
                         game.gbPanel.board.repaint();
                         }
                     }
-                    else if(line.startsWith("/purchaseRoad")){
-                         String[] temp = line.split("\\s+");
-                        if(temp[2].equals("white")){
-                        game.gbPanel.board.sideArray[Integer.parseInt(temp[1])].setOwner(Player.WHITE);
-                        game.gbPanel.board.sideArray[Integer.parseInt(temp[1])].setColor(Color.WHITE);
-                        game.gbPanel.board.repaint();
-                        }
-                        if(temp[2].equals("orange")){
-                        game.gbPanel.board.sideArray[Integer.parseInt(temp[1])].setOwner(Player.ORANGE);
-                        game.gbPanel.board.sideArray[Integer.parseInt(temp[1])].setColor(Color.ORANGE);
-                        game.gbPanel.board.repaint();
-                        }
-                        if(temp[2].equals("blue")){
-                        game.gbPanel.board.sideArray[Integer.parseInt(temp[1])].setOwner(Player.BLUE);
-                        game.gbPanel.board.sideArray[Integer.parseInt(temp[1])].setColor(Color.BLUE);
-                        game.gbPanel.board.repaint();
-                        }
-                        if(temp[2].equals("red")){
-                        game.gbPanel.board.sideArray[Integer.parseInt(temp[1])].setOwner(Player.RED);
-                        game.gbPanel.board.sideArray[Integer.parseInt(temp[1])].setColor(Color.RED);
-                        game.gbPanel.board.repaint();
-                        }
-                    }
                     else if(line.startsWith("/removeResource")){
                         String[] temp = line.split("\\s+");
                         if(temp[1].equals("brick")){
@@ -226,6 +187,11 @@ public class Client extends JFrame {
             }
         }
     }
+	
+	public void writeOutput(String buildCommand)
+	{
+		out.println(buildCommand);
+	}
 
     private class ActionHandler implements ActionListener {
 

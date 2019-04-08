@@ -39,7 +39,7 @@ class Board extends JPanel {
         }
 
         for (int i = 0; i < 54; i++) {
-            pointArray[i] = new Settlement();
+            pointArray[i] = new Settlement(this);
         }
 
 	MouseListener settlementListener = new SettlementColorChange();
@@ -1285,33 +1285,39 @@ class Board extends JPanel {
         }
     }
 	
-	public void assessCoordsPressed()
+	public int assessCoordsClicked()
 	{
+		int settlementNumber = -1;
 		for (int i = 0; i < 54; i++)
 		{
 			coords = pointArray[i].getBoardCoords();
 			if (eventCoords[0] < coords[0] + 5.0 && eventCoords[0] > coords[0] - 5.0 && eventCoords[1] < coords[1] + 5.0 && eventCoords[1] > coords[1] - 5.0)		
 			{
-				pointArray[i].setSettlementColor(Color.ORANGE);
-				break;
-			}
-		}
-	
-		repaint();
-	}
-
-	public void assessCoordsReleased()
-	{
-		for (int i = 0; i < 54; i++)
-		{
-			coords = pointArray[i].getBoardCoords();
-			{
-				pointArray[i].setSettlementColor(Color.BLACK);
+				settlementNumber = i;
 				break;
 			}
 		}
 		
-		repaint();
+		return settlementNumber;
+	}
+
+	public void checkBuildSettlement(int settlementNumber)
+	{
+		if (pointArray[settlementNumber].checkAdjacentSides())
+		{
+			if (pointArray[settlementNumber].checkAdjacentPoints())
+			{
+				Client.writeOutput("/purchaseSettlement");
+			}
+			else
+			{
+				//pop-up stating cannot build here
+			}
+		}
+		else
+		{
+			//same pop-up
+		}
 	}
 
 	private class SettlementColorChange extends MouseAdapter
@@ -1320,18 +1326,12 @@ class Board extends JPanel {
 		{
 		}
 
-		public void mousePressed(MouseEvent e)
+		public void mouseClicked(MouseEvent e)
 		{
 			eventCoords[0] = e.getX();
 			eventCoords[1] = e.getY();
-			assessCoordsPressed();
-		}
-	
-		public void mouseReleased(MouseEvent e)
-		{
-			eventCoords[0] = e.getX();
-			eventCoords[1] = e.getY();
-			assessCoordsReleased();
+			int settlementNumber = assessCoordsClicked();
+			checkBuildSettlement(settlementNumber);
 		}
 	}
 }
