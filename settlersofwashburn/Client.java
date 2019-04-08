@@ -9,8 +9,9 @@ import javax.imageio.ImageIO;
 import static javax.swing.JFrame.EXIT_ON_CLOSE;
 
 public class Client extends JFrame {
+
     int currentPlayer;
-    Client thisClient= this;
+    Client thisClient = this;
     String gameState = "lobby";
     LobbyFrame lobby;
     private cFrame game;
@@ -45,7 +46,7 @@ public class Client extends JFrame {
                 while ((line = in.readLine()) != null) {
                     if (line.startsWith("/start")) {
                         lobby.setVisible(false);
-                        game = new cFrame("Settlers Of Washburn",thisClient);
+                        game = new cFrame("Settlers Of Washburn", thisClient);
                         game.chatPanel.messageField.addKeyListener(new KeyHandler());
                         game.chatPanel.sendButton.addActionListener(new ActionHandler());
                         game.phPanel.nextTurn.addActionListener(new ActionHandler());
@@ -105,7 +106,7 @@ public class Client extends JFrame {
                         }
                     } else if (line.startsWith("/nextTurn")) {
                         String[] temp = line.split("\\s+");
-                        currentPlayer= Integer.parseInt(temp[1]);
+                        currentPlayer = Integer.parseInt(temp[1]);
                         game.phPanel.nextTurn.setEnabled(false);
                         if (temp[3].equals("true")) {
                             game.phPanel.nextTurn.setEnabled(true);
@@ -198,19 +199,21 @@ public class Client extends JFrame {
                     } else if (line.startsWith("/endGame")) {
                         String[] temp = line.split("\\s+");
                         game.phPanel.nextTurn.setEnabled(false);
-                        JOptionPane.showMessageDialog(game, "Congratulation, " + temp[1] + " you have won!!!");
+                        game.gbPanel.board.makeJOptionPane("Congratulation, " + temp[1] + " you have won!!!");
+                        //JOptionPane.showMessageDialog(game.gbPanel.board, "Congratulation, " + temp[1] + " you have won!!!");
                     } else if (line.equals("/cantBuildSettlement")) {
-                        JOptionPane.showMessageDialog(game, "You must have 1 grain, wool, lumber and brick in order to build a settlement");
+                        game.gbPanel.board.makeJOptionPane("You must have 1 grain, wool, lumber and brick in order to build a settlement");
+                      //  JOptionPane.showMessageDialog(game.gbPanel.board, "You must have 1 grain, wool, lumber and brick in order to build a settlement");
                     } else if (line.equals("/cantBuildRoad")) {
-                        JOptionPane.showMessageDialog(game, "You must have 1 lumber and brick in order to build a road");
-                    }
-                    else if (line.equals("/tradeDeclined")) {
-                        JOptionPane.showMessageDialog(game, "The trade request was declined");
-                    }
-                    else if (line.equals("/tradeFailed")) {
-                        JOptionPane.showMessageDialog(game, "both players do not possess the neccessary resources to complete this trade");
-                    }
-                    else if (line.startsWith("/trade")) {
+                        game.gbPanel.board.makeJOptionPane("You must have 1 lumber and brick in order to build a road");
+                     //   JOptionPane.showMessageDialog(game.gbPanel.board, "You must have 1 lumber and brick in order to build a road");
+                    } else if (line.equals("/tradeDeclined")) {
+                        game.gbPanel.board.makeJOptionPane("The trade request was declined");
+                       // JOptionPane.showMessageDialog(game.gbPanel.board, "The trade request was declined");
+                    } else if (line.equals("/tradeFailed")) {
+                        game.gbPanel.board.makeJOptionPane("both players do not possess the neccessary resources to complete this trade");
+                       // JOptionPane.showMessageDialog(game.gbPanel.board, "both players do not possess the neccessary resources to complete this trade");
+                    } else if (line.startsWith("/trade")) {
                         String[] temp = line.split("\\~+");
                         String player1 = temp[0];
                         String player2 = temp[1];
@@ -225,27 +228,24 @@ public class Client extends JFrame {
                             P2Offer.append(player2Split[x + 1] + " " + player2Split[x]);
                         }
                         Object[] options = {"Yes",
-                            "No",
-                            };
-                        int n = JOptionPane.showOptionDialog(null,
-                                player2Split[0]+" would you like to trade your "+P1Offer
-                                + " for their " + P2Offer +". Do you Accept?",
+                            "No",};
+                        int n = game.gbPanel.board.makeJOptionDialog(
+                                player2Split[0] + " would you like to trade your " + P1Offer
+                                + " for their " + P2Offer + ". Do you Accept?",
                                 "Trade Request",
                                 JOptionPane.YES_NO_OPTION,
                                 JOptionPane.QUESTION_MESSAGE,
                                 null,
                                 options,
                                 options[1]);
-                        if(n==JOptionPane.YES_OPTION){
+                        if (n == JOptionPane.YES_OPTION) {
                             out.println(line.replace("/trade", "/tradeAccepted"));
                             System.out.println(line.replace("/trade", "/tradeAccepted"));
-                        }
-                        else {
+                        } else {
                             out.println(line.replace("/trade", "/tradeDeclined"));
                             System.out.println(line.replace("/trade", "/tradeDeclined"));
                         }
-                    } 
-                    else {
+                    } else {
                         if (gameState.equals("lobby")) {
                             lobby.chatTA.append("\n" + line);
                         } else {
@@ -286,6 +286,10 @@ public class Client extends JFrame {
                 }
             }
         }
+    }
+
+    public void writeOutput(String buildCommand) {
+        out.println(buildCommand);
     }
 
     private class KeyHandler extends KeyAdapter {
