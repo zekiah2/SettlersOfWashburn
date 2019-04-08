@@ -28,16 +28,16 @@ public class Hand {
         if(card.getType() == Card.BRICK){
            brick.add(card);
         }
-        if(card.getType() == Card.WOOL){
+        if(card.getType() == Card.BRICK){
            wool.add(card);
         }
-        if(card.getType() == Card.ORE){
+        if(card.getType() == Card.BRICK){
            ore.add(card);
         }
-        if(card.getType() == Card.GRAIN){
+        if(card.getType() == Card.BRICK){
            grain.add(card);
         }
-        if(card.getType() == Card.LUMBER){
+        if(card.getType() == Card.BRICK){
            lumber.add(card);
         }
         
@@ -46,16 +46,16 @@ public class Hand {
         if(card.getType() == Card.BRICK){
            brick.remove(0);
         }
-        if(card.getType() == Card.WOOL){
+        if(card.getType() == Card.BRICK){
            wool.remove(0);
         }
-        if(card.getType() == Card.ORE){
+        if(card.getType() == Card.BRICK){
            ore.remove(0);
         }
-        if(card.getType() == Card.GRAIN){
+        if(card.getType() == Card.BRICK){
            grain.remove(0);
         }
-        if(card.getType() == Card.LUMBER){
+        if(card.getType() == Card.BRICK){
            lumber.remove(0);
         }
     }

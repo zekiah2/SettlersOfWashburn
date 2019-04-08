@@ -24,15 +24,16 @@ public class cFrame extends JFrame
 	
 	public PlayerPanel playerPanel;
 	public ChatPanel chatPanel;
-	public GameBoardPanel gbPanel;
+	GameBoardPanel gbPanel;
 	public PlayerHandPanel phPanel;
+        private Client client;
 	
-	public cFrame(String title)
+	public cFrame(String title, Client eclient)
 	{
-		
+		client = eclient;
 		playerPanel = new PlayerPanel();
 		chatPanel = new ChatPanel();
-		gbPanel = new GameBoardPanel();
+		gbPanel = new GameBoardPanel(client);
 		phPanel = new PlayerHandPanel();
 		
 		//Dimension bsize = getPreferredSize();
@@ -44,8 +45,8 @@ public class cFrame extends JFrame
 		
 		
 		Dimension screenSize = new Dimension();
-		screenSize.height=1025;
-		screenSize.width=1400;
+		screenSize.height=1000;
+		screenSize.width=1247;
 		this.setSize(screenSize);
 		this.setLayout(layout);
 		this.setResizable(false);

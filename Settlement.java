@@ -22,17 +22,14 @@ class Settlement extends Component {
 		private ArrayList<Integer> adjacentTiles;
 		private double[] boardCoords;
 		private Color pointColor;
-                private int owner = -1;
-		private Board board;
 
-		public Settlement(Board board)
+		public Settlement()
 		{
 			adjacentSides = new ArrayList<Integer>();
 			adjacentPoints = new ArrayList<Integer>();
 			adjacentTiles = new ArrayList<Integer>();
 			boardCoords = new double[2];
 			pointColor = Color.BLACK;
-			this.board = board;
 		}
 		
 		public void add2Sides(int side1, int side2)
@@ -130,42 +127,4 @@ class Settlement extends Component {
 		{
 			return pointColor;
 		}		
-                public void setOwner(int owner){
-                    this.owner=owner;
-                }
-                public int getOwner(){
-                    return owner;
-                }
-
-		public boolean checkAdjacentSides()
-		{
-			boolean roadConnected = false;
-			
-			for (int i = 0; i < this.getSidesSize(); i++)
-			{
-				if (board.sideArray[this.adjacentSides.get(i)].getOwner() == this.getOwner())
-				{
-					roadConnected = true;
-					break;
-				}
-			}
-			
-			return roadConnected;
-		}
-
-		public boolean checkAdjacentPoints()
-		{
-			boolean hasNoAdjacentPoint = true;
-
-			for (int i = 0; i < this.getPointsSize(); i++)
-			{
-				if (board.pointArray[this.adjacentPoints.get(i)].getOwner() > -1)
-				{
-					hasNoAdjacentPoint = false;
-					break;
-				}
-			}
-			
-			return hasNoAdjacentPoint;
-		}
 }
