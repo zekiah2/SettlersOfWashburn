@@ -10,6 +10,7 @@ import java.awt.event.*;
 
 class Board extends JPanel {
 
+    private Client client;
     public Road[] sideArray;
     public Settlement[] pointArray;
     public Tile[] tileArray;
@@ -22,7 +23,8 @@ class Board extends JPanel {
 	private double[] eventCoords;
 	private double[] coords;
 
-    public Board() {
+    public Board(Client client) {
+        this.client = client;
         sideArray = new Road[72];
         pointArray = new Settlement[54];
         tileArray = new Tile[19];

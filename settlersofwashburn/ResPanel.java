@@ -17,7 +17,9 @@ public class ResPanel extends JPanel
 			this.add(resCtr);
 			
 		}
-		
+		public int getCtr(){
+                    return Ctr;
+                }
 		public void addCtr()
 		{
 			Ctr++;

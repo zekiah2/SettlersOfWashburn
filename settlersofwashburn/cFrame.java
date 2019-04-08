@@ -22,17 +22,18 @@ public class cFrame extends JFrame
 	JPanel greenPanel= new JPanel();
 	BorderLayout layout = new BorderLayout();
 	
+        private Client client;
 	public PlayerPanel playerPanel;
 	public ChatPanel chatPanel;
 	public GameBoardPanel gbPanel;
 	public PlayerHandPanel phPanel;
 	
-	public cFrame(String title)
+	public cFrame(String title,Client client)
 	{
-		
+		this.client=client;
 		playerPanel = new PlayerPanel();
 		chatPanel = new ChatPanel();
-		gbPanel = new GameBoardPanel();
+		gbPanel = new GameBoardPanel(this.client);
 		phPanel = new PlayerHandPanel();
 		
 		//Dimension bsize = getPreferredSize();

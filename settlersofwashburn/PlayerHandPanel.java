@@ -19,9 +19,8 @@ public class PlayerHandPanel extends JPanel
 	public ResPanel orePanel;
 	public ResPanel woolPanel;
 	public ResPanel lumberPanel;
-        public JPanel buttonPanel;
-	
-	private ResPanel vpPanel;
+        public JPanel buttonPanel;	
+	public ResPanel vpPanel;
         public JButton nextTurn;
 	
 	
