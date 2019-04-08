@@ -10,7 +10,6 @@ import java.awt.event.*;
 
 class Board extends JPanel {
 
-    private Client client;
     public Road[] sideArray;
     public Settlement[] pointArray;
     public Tile[] tileArray;
@@ -22,9 +21,12 @@ class Board extends JPanel {
     private Settlement temp;
 	private double[] eventCoords;
 	private double[] coords;
+    private Client client;
+        
+    
 
-    public Board(Client client) {
-        this.client = client;
+    public Board(Client eclient) {
+        client = eclient;
         sideArray = new Road[72];
         pointArray = new Settlement[54];
         tileArray = new Tile[19];
@@ -46,6 +48,8 @@ class Board extends JPanel {
 
 	MouseListener settlementListener = new SettlementColorChange();
 	this.addMouseListener(settlementListener);
+        MouseListener roadListener = new RoadColorChange();
+	this.addMouseListener(roadListener);
 
         xPos = 4 * xUnit;
         yPos = yUnit;
@@ -729,7 +733,7 @@ class Board extends JPanel {
         tileArray[4] = new Tile("ore", 6, pointArray, new int[]{8, 13, 18, 23, 17, 12, 8}, Color.GRAY);
         tileArray[5] = new Tile("brick", 5, pointArray, new int[]{9, 14, 19, 24, 18, 13, 9}, Color.ORANGE.darker());
         tileArray[6] = new Tile("wool", 10, pointArray, new int[]{10, 15, 20, 25, 19, 14, 10}, Color.GREEN);
-
+        
         tileArray[7] = new Tile("DESERT", 5, pointArray, new int[]{16, 22, 28, 33, 27, 21, 16}, Color.GREEN);
         tileArray[8] = new Tile("lumber", 3, pointArray, new int[]{17, 23, 29, 34, 28, 22, 17}, Color.GREEN.darker().darker());
         tileArray[9] = new Tile("grain", 11, pointArray, new int[]{18, 24, 30, 35, 29, 23, 18}, Color.YELLOW);
@@ -824,61 +828,61 @@ class Board extends JPanel {
         //0-10
         g2d = (Graphics2D) g.create();
         g2d.setColor(sideArray[g2dcnt].getColor());
-        g2d.rotate(Road.aDownL, sideArray[g2dcnt].x, sideArray[g2dcnt].y+(sideArray[g2dcnt].height/2));
+        g2d.rotate(Road.aDownL, sideArray[g2dcnt].x-10, sideArray[g2dcnt].y+(sideArray[g2dcnt].height/2));
         g2d.fill(sideArray[g2dcnt]);
         sideGraphic.add(g2d);
         g2dcnt++;
         g2d = (Graphics2D) g.create();
         g2d.setColor(sideArray[g2dcnt].getColor());
-        g2d.rotate(Road.aDownR, sideArray[g2dcnt].x, sideArray[g2dcnt].y+(sideArray[g2dcnt].height/2));
+        g2d.rotate(Road.aDownR, sideArray[g2dcnt].x-10, sideArray[g2dcnt].y+(sideArray[g2dcnt].height/2));
         g2d.fill(sideArray[g2dcnt]);
         sideGraphic.add(g2d);
         g2dcnt++;
         g2d = (Graphics2D) g.create();
         g2d.setColor(sideArray[g2dcnt].getColor());
-        g2d.rotate(Road.aDownL, sideArray[g2dcnt].x, sideArray[g2dcnt].y+(sideArray[g2dcnt].height/2));
+        g2d.rotate(Road.aDownL, sideArray[g2dcnt].x-10, sideArray[g2dcnt].y+(sideArray[g2dcnt].height/2));
         g2d.fill(sideArray[g2dcnt]);
         sideGraphic.add(g2d);
         g2dcnt++;
         g2d = (Graphics2D) g.create();
         g2d.setColor(sideArray[g2dcnt].getColor());
-        g2d.rotate(Road.aDownR, sideArray[g2dcnt].x, sideArray[g2dcnt].y+(sideArray[g2dcnt].height/2));
+        g2d.rotate(Road.aDownR, sideArray[g2dcnt].x-10, sideArray[g2dcnt].y+(sideArray[g2dcnt].height/2));
         g2d.fill(sideArray[g2dcnt]);
         sideGraphic.add(g2d);
         g2dcnt++;
         g2d = (Graphics2D) g.create();
         g2d.setColor(sideArray[g2dcnt].getColor());
-        g2d.rotate(Road.aDownL, sideArray[g2dcnt].x, sideArray[g2dcnt].y+(sideArray[g2dcnt].height/2));
+        g2d.rotate(Road.aDownL, sideArray[g2dcnt].x-10, sideArray[g2dcnt].y+(sideArray[g2dcnt].height/2));
         g2d.fill(sideArray[g2dcnt]);
         sideGraphic.add(g2d);
         g2dcnt++;
         g2d = (Graphics2D) g.create();
         g2d.setColor(sideArray[g2dcnt].getColor());
-        g2d.rotate(Road.aDownR, sideArray[g2dcnt].x, sideArray[g2dcnt].y+(sideArray[g2dcnt].height/2));
+        g2d.rotate(Road.aDownR, sideArray[g2dcnt].x-10, sideArray[g2dcnt].y+(sideArray[g2dcnt].height/2));
         g2d.fill(sideArray[g2dcnt]);
         sideGraphic.add(g2d);
         g2dcnt++;
         g2d = (Graphics2D) g.create();
         g2d.setColor(sideArray[g2dcnt].getColor());
-        g2d.rotate(Road.aDown, sideArray[g2dcnt].x, sideArray[g2dcnt].y+(sideArray[g2dcnt].height/2));
+        g2d.rotate(Road.aDown, sideArray[g2dcnt].x-10, sideArray[g2dcnt].y+(sideArray[g2dcnt].height/2));
         g2d.fill(sideArray[g2dcnt]);
         sideGraphic.add(g2d);
         g2dcnt++;
         g2d = (Graphics2D) g.create();
         g2d.setColor(sideArray[g2dcnt].getColor());
-        g2d.rotate(Road.aDown, sideArray[g2dcnt].x, sideArray[g2dcnt].y+(sideArray[g2dcnt].height/2));
+        g2d.rotate(Road.aDown, sideArray[g2dcnt].x-10, sideArray[g2dcnt].y+(sideArray[g2dcnt].height/2));
         g2d.fill(sideArray[g2dcnt]);
         sideGraphic.add(g2d);
         g2dcnt++;
         g2d = (Graphics2D) g.create();
         g2d.setColor(sideArray[g2dcnt].getColor());
-        g2d.rotate(Road.aDown, sideArray[g2dcnt].x, sideArray[g2dcnt].y+(sideArray[g2dcnt].height/2));
+        g2d.rotate(Road.aDown, sideArray[g2dcnt].x-10, sideArray[g2dcnt].y+(sideArray[g2dcnt].height/2));
         g2d.fill(sideArray[g2dcnt]);
         sideGraphic.add(g2d);
         g2dcnt++;
         g2d = (Graphics2D) g.create();
         g2d.setColor(sideArray[g2dcnt].getColor());
-        g2d.rotate(Road.aDown, sideArray[g2dcnt].x, sideArray[g2dcnt].y+(sideArray[g2dcnt].height/2));
+        g2d.rotate(Road.aDown, sideArray[g2dcnt].x-10, sideArray[g2dcnt].y+(sideArray[g2dcnt].height/2));
         g2d.fill(sideArray[g2dcnt]);
         sideGraphic.add(g2d);
         g2dcnt++;
@@ -888,61 +892,61 @@ class Board extends JPanel {
         //10-20
         g2d = (Graphics2D) g.create();
         g2d.setColor(sideArray[g2dcnt].getColor());
-        g2d.rotate(Road.aDownL, sideArray[g2dcnt].x, sideArray[g2dcnt].y+(sideArray[g2dcnt].height/2));
+        g2d.rotate(Road.aDownL, sideArray[g2dcnt].x-10, sideArray[g2dcnt].y+(sideArray[g2dcnt].height/2));
         g2d.fill(sideArray[g2dcnt]);
         sideGraphic.add(g2d);
         g2dcnt++;
         g2d = (Graphics2D) g.create();
         g2d.setColor(sideArray[g2dcnt].getColor());
-        g2d.rotate(Road.aDownR, sideArray[g2dcnt].x, sideArray[g2dcnt].y+(sideArray[g2dcnt].height/2));
+        g2d.rotate(Road.aDownR, sideArray[g2dcnt].x-10, sideArray[g2dcnt].y+(sideArray[g2dcnt].height/2));
         g2d.fill(sideArray[g2dcnt]);
         sideGraphic.add(g2d);
         g2dcnt++;
         g2d = (Graphics2D) g.create();
         g2d.setColor(sideArray[g2dcnt].getColor());
-        g2d.rotate(Road.aDownL, sideArray[g2dcnt].x, sideArray[g2dcnt].y+(sideArray[g2dcnt].height/2));
+        g2d.rotate(Road.aDownL, sideArray[g2dcnt].x-10, sideArray[g2dcnt].y+(sideArray[g2dcnt].height/2));
         g2d.fill(sideArray[g2dcnt]);
         sideGraphic.add(g2d);
         g2dcnt++;
         g2d = (Graphics2D) g.create();
         g2d.setColor(sideArray[g2dcnt].getColor());
-        g2d.rotate(Road.aDownR, sideArray[g2dcnt].x, sideArray[g2dcnt].y+(sideArray[g2dcnt].height/2));
+        g2d.rotate(Road.aDownR, sideArray[g2dcnt].x-10, sideArray[g2dcnt].y+(sideArray[g2dcnt].height/2));
         g2d.fill(sideArray[g2dcnt]);
         sideGraphic.add(g2d);
         g2dcnt++;
         g2d = (Graphics2D) g.create();
         g2d.setColor(sideArray[g2dcnt].getColor());
-        g2d.rotate(Road.aDownL, sideArray[g2dcnt].x, sideArray[g2dcnt].y+(sideArray[g2dcnt].height/2));
+        g2d.rotate(Road.aDownL, sideArray[g2dcnt].x-10, sideArray[g2dcnt].y+(sideArray[g2dcnt].height/2));
         g2d.fill(sideArray[g2dcnt]);
         sideGraphic.add(g2d);
         g2dcnt++;
         g2d = (Graphics2D) g.create();
         g2d.setColor(sideArray[g2dcnt].getColor());
-        g2d.rotate(Road.aDownR, sideArray[g2dcnt].x, sideArray[g2dcnt].y+(sideArray[g2dcnt].height/2));
+        g2d.rotate(Road.aDownR, sideArray[g2dcnt].x-10, sideArray[g2dcnt].y+(sideArray[g2dcnt].height/2));
         g2d.fill(sideArray[g2dcnt]);
         sideGraphic.add(g2d);
         g2dcnt++;
         g2d = (Graphics2D) g.create();
         g2d.setColor(sideArray[g2dcnt].getColor());
-        g2d.rotate(Road.aDownL, sideArray[g2dcnt].x, sideArray[g2dcnt].y+(sideArray[g2dcnt].height/2));
+        g2d.rotate(Road.aDownL, sideArray[g2dcnt].x-10, sideArray[g2dcnt].y+(sideArray[g2dcnt].height/2));
         g2d.fill(sideArray[g2dcnt]);
         sideGraphic.add(g2d);
         g2dcnt++;
         g2d = (Graphics2D) g.create();
         g2d.setColor(sideArray[g2dcnt].getColor());
-        g2d.rotate(Road.aDownR, sideArray[g2dcnt].x, sideArray[g2dcnt].y+(sideArray[g2dcnt].height/2));
+        g2d.rotate(Road.aDownR, sideArray[g2dcnt].x-10, sideArray[g2dcnt].y+(sideArray[g2dcnt].height/2));
         g2d.fill(sideArray[g2dcnt]);
         sideGraphic.add(g2d);
         g2dcnt++;
         g2d = (Graphics2D) g.create();
         g2d.setColor(sideArray[g2dcnt].getColor());
-        g2d.rotate(Road.aDown, sideArray[g2dcnt].x, sideArray[g2dcnt].y+(sideArray[g2dcnt].height/2));
+        g2d.rotate(Road.aDown, sideArray[g2dcnt].x-10, sideArray[g2dcnt].y+(sideArray[g2dcnt].height/2));
         g2d.fill(sideArray[g2dcnt]);
         sideGraphic.add(g2d);
         g2dcnt++;
         g2d = (Graphics2D) g.create();
         g2d.setColor(sideArray[g2dcnt].getColor());
-        g2d.rotate(Road.aDown, sideArray[g2dcnt].x, sideArray[g2dcnt].y+(sideArray[g2dcnt].height/2));
+        g2d.rotate(Road.aDown, sideArray[g2dcnt].x-10, sideArray[g2dcnt].y+(sideArray[g2dcnt].height/2));
         g2d.fill(sideArray[g2dcnt]);
         sideGraphic.add(g2d);
         g2dcnt++;
@@ -950,61 +954,61 @@ class Board extends JPanel {
         //20-30
         g2d = (Graphics2D) g.create();
         g2d.setColor(sideArray[g2dcnt].getColor());
-        g2d.rotate(Road.aDown, sideArray[g2dcnt].x, sideArray[g2dcnt].y+(sideArray[g2dcnt].height/2));
+        g2d.rotate(Road.aDown, sideArray[g2dcnt].x-10, sideArray[g2dcnt].y+(sideArray[g2dcnt].height/2));
         g2d.fill(sideArray[g2dcnt]);
         sideGraphic.add(g2d);
         g2dcnt++;
         g2d = (Graphics2D) g.create();
         g2d.setColor(sideArray[g2dcnt].getColor());
-        g2d.rotate(Road.aDown, sideArray[g2dcnt].x, sideArray[g2dcnt].y+(sideArray[g2dcnt].height/2));
+        g2d.rotate(Road.aDown, sideArray[g2dcnt].x-10, sideArray[g2dcnt].y+(sideArray[g2dcnt].height/2));
         g2d.fill(sideArray[g2dcnt]);
         sideGraphic.add(g2d);
         g2dcnt++;
         g2d = (Graphics2D) g.create();
         g2d.setColor(sideArray[g2dcnt].getColor());
-        g2d.rotate(Road.aDown, sideArray[g2dcnt].x, sideArray[g2dcnt].y+(sideArray[g2dcnt].height/2));
+        g2d.rotate(Road.aDown, sideArray[g2dcnt].x-10, sideArray[g2dcnt].y+(sideArray[g2dcnt].height/2));
         g2d.fill(sideArray[g2dcnt]);
         sideGraphic.add(g2d);
         g2dcnt++;
         g2d = (Graphics2D) g.create();
         g2d.setColor(sideArray[g2dcnt].getColor());
-        g2d.rotate(Road.aDownL, sideArray[g2dcnt].x, sideArray[g2dcnt].y+(sideArray[g2dcnt].height/2));
+        g2d.rotate(Road.aDownL, sideArray[g2dcnt].x-10, sideArray[g2dcnt].y+(sideArray[g2dcnt].height/2));
         g2d.fill(sideArray[g2dcnt]);
         sideGraphic.add(g2d);
         g2dcnt++;
         g2d = (Graphics2D) g.create();
         g2d.setColor(sideArray[g2dcnt].getColor());
-        g2d.rotate(Road.aDownR, sideArray[g2dcnt].x, sideArray[g2dcnt].y+(sideArray[g2dcnt].height/2));
+        g2d.rotate(Road.aDownR, sideArray[g2dcnt].x-10, sideArray[g2dcnt].y+(sideArray[g2dcnt].height/2));
         g2d.fill(sideArray[g2dcnt]);
         sideGraphic.add(g2d);
         g2dcnt++;
         g2d = (Graphics2D) g.create();
         g2d.setColor(sideArray[g2dcnt].getColor());
-        g2d.rotate(Road.aDownL, sideArray[g2dcnt].x, sideArray[g2dcnt].y+(sideArray[g2dcnt].height/2));
+        g2d.rotate(Road.aDownL, sideArray[g2dcnt].x-10, sideArray[g2dcnt].y+(sideArray[g2dcnt].height/2));
         g2d.fill(sideArray[g2dcnt]);
         sideGraphic.add(g2d);
         g2dcnt++;
         g2d = (Graphics2D) g.create();
         g2d.setColor(sideArray[g2dcnt].getColor());
-        g2d.rotate(Road.aDownR, sideArray[g2dcnt].x, sideArray[g2dcnt].y+(sideArray[g2dcnt].height/2));
+        g2d.rotate(Road.aDownR, sideArray[g2dcnt].x-10, sideArray[g2dcnt].y+(sideArray[g2dcnt].height/2));
         g2d.fill(sideArray[g2dcnt]);
         sideGraphic.add(g2d);
         g2dcnt++;
         g2d = (Graphics2D) g.create();
         g2d.setColor(sideArray[g2dcnt].getColor());
-        g2d.rotate(Road.aDownL, sideArray[g2dcnt].x, sideArray[g2dcnt].y+(sideArray[g2dcnt].height/2));
+        g2d.rotate(Road.aDownL, sideArray[g2dcnt].x-10, sideArray[g2dcnt].y+(sideArray[g2dcnt].height/2));
         g2d.fill(sideArray[g2dcnt]);
         sideGraphic.add(g2d);
         g2dcnt++;
         g2d = (Graphics2D) g.create();
         g2d.setColor(sideArray[g2dcnt].getColor());
-        g2d.rotate(Road.aDownR, sideArray[g2dcnt].x, sideArray[g2dcnt].y+(sideArray[g2dcnt].height/2));
+        g2d.rotate(Road.aDownR, sideArray[g2dcnt].x-10, sideArray[g2dcnt].y+(sideArray[g2dcnt].height/2));
         g2d.fill(sideArray[g2dcnt]);
         sideGraphic.add(g2d);
         g2dcnt++;
         g2d = (Graphics2D) g.create();
         g2d.setColor(sideArray[g2dcnt].getColor());
-        g2d.rotate(Road.aDownL, sideArray[g2dcnt].x, sideArray[g2dcnt].y+(sideArray[g2dcnt].height/2));
+        g2d.rotate(Road.aDownL, sideArray[g2dcnt].x-10, sideArray[g2dcnt].y+(sideArray[g2dcnt].height/2));
         g2d.fill(sideArray[g2dcnt]);
         sideGraphic.add(g2d);
         g2dcnt++;
@@ -1013,61 +1017,61 @@ class Board extends JPanel {
         //30-40
         g2d = (Graphics2D) g.create();
         g2d.setColor(sideArray[g2dcnt].getColor());
-        g2d.rotate(Road.aDownR, sideArray[g2dcnt].x, sideArray[g2dcnt].y+(sideArray[g2dcnt].height/2));
+        g2d.rotate(Road.aDownR, sideArray[g2dcnt].x-10, sideArray[g2dcnt].y+(sideArray[g2dcnt].height/2));
         g2d.fill(sideArray[g2dcnt]);
         sideGraphic.add(g2d);
         g2dcnt++;
         g2d = (Graphics2D) g.create();
         g2d.setColor(sideArray[g2dcnt].getColor());
-        g2d.rotate(Road.aDownL, sideArray[g2dcnt].x, sideArray[g2dcnt].y+(sideArray[g2dcnt].height/2));
+        g2d.rotate(Road.aDownL, sideArray[g2dcnt].x-10, sideArray[g2dcnt].y+(sideArray[g2dcnt].height/2));
         g2d.fill(sideArray[g2dcnt]);
         sideGraphic.add(g2d);
         g2dcnt++;
         g2d = (Graphics2D) g.create();
         g2d.setColor(sideArray[g2dcnt].getColor());
-        g2d.rotate(Road.aDownR, sideArray[g2dcnt].x, sideArray[g2dcnt].y+(sideArray[g2dcnt].height/2));
+        g2d.rotate(Road.aDownR, sideArray[g2dcnt].x-10, sideArray[g2dcnt].y+(sideArray[g2dcnt].height/2));
         g2d.fill(sideArray[g2dcnt]);
         sideGraphic.add(g2d);
         g2dcnt++;
         g2d = (Graphics2D) g.create();
         g2d.setColor(sideArray[g2dcnt].getColor());
-        g2d.rotate(Road.aDown, sideArray[g2dcnt].x, sideArray[g2dcnt].y+(sideArray[g2dcnt].height/2));
+        g2d.rotate(Road.aDown, sideArray[g2dcnt].x-10, sideArray[g2dcnt].y+(sideArray[g2dcnt].height/2));
         g2d.fill(sideArray[g2dcnt]);
         sideGraphic.add(g2d);
         g2dcnt++;
         g2d = (Graphics2D) g.create();
         g2d.setColor(sideArray[g2dcnt].getColor());
-        g2d.rotate(Road.aDown, sideArray[g2dcnt].x, sideArray[g2dcnt].y+(sideArray[g2dcnt].height/2));
+        g2d.rotate(Road.aDown, sideArray[g2dcnt].x-10, sideArray[g2dcnt].y+(sideArray[g2dcnt].height/2));
         g2d.fill(sideArray[g2dcnt]);
         sideGraphic.add(g2d);
         g2dcnt++;
         g2d = (Graphics2D) g.create();
         g2d.setColor(sideArray[g2dcnt].getColor());
-        g2d.rotate(Road.aDown, sideArray[g2dcnt].x, sideArray[g2dcnt].y+(sideArray[g2dcnt].height/2));
+        g2d.rotate(Road.aDown, sideArray[g2dcnt].x-10, sideArray[g2dcnt].y+(sideArray[g2dcnt].height/2));
         g2d.fill(sideArray[g2dcnt]);
         sideGraphic.add(g2d);
         g2dcnt++;
         g2d = (Graphics2D) g.create();
         g2d.setColor(sideArray[g2dcnt].getColor());
-        g2d.rotate(Road.aDown, sideArray[g2dcnt].x, sideArray[g2dcnt].y+(sideArray[g2dcnt].height/2));
+        g2d.rotate(Road.aDown, sideArray[g2dcnt].x-10, sideArray[g2dcnt].y+(sideArray[g2dcnt].height/2));
         g2d.fill(sideArray[g2dcnt]);
         sideGraphic.add(g2d);
         g2dcnt++;
         g2d = (Graphics2D) g.create();
         g2d.setColor(sideArray[g2dcnt].getColor());
-        g2d.rotate(Road.aDown, sideArray[g2dcnt].x, sideArray[g2dcnt].y+(sideArray[g2dcnt].height/2));
+        g2d.rotate(Road.aDown, sideArray[g2dcnt].x-10, sideArray[g2dcnt].y+(sideArray[g2dcnt].height/2));
         g2d.fill(sideArray[g2dcnt]);
         sideGraphic.add(g2d);
         g2dcnt++;
         g2d = (Graphics2D) g.create();
         g2d.setColor(sideArray[g2dcnt].getColor());
-        g2d.rotate(Road.aDown, sideArray[g2dcnt].x, sideArray[g2dcnt].y+(sideArray[g2dcnt].height/2));
+        g2d.rotate(Road.aDown, sideArray[g2dcnt].x-10, sideArray[g2dcnt].y+(sideArray[g2dcnt].height/2));
         g2d.fill(sideArray[g2dcnt]);
         sideGraphic.add(g2d);
         g2dcnt++;
         g2d = (Graphics2D) g.create();
         g2d.setColor(sideArray[g2dcnt].getColor());
-        g2d.rotate(Road.aDownR, sideArray[g2dcnt].x, sideArray[g2dcnt].y+(sideArray[g2dcnt].height/2));
+        g2d.rotate(Road.aDownR, sideArray[g2dcnt].x-10, sideArray[g2dcnt].y+(sideArray[g2dcnt].height/2));
         g2d.fill(sideArray[g2dcnt]);
         sideGraphic.add(g2d);
         g2dcnt++;
@@ -1076,61 +1080,61 @@ class Board extends JPanel {
         //40-50
         g2d = (Graphics2D) g.create();
         g2d.setColor(sideArray[g2dcnt].getColor());
-        g2d.rotate(Road.aDownL, sideArray[g2dcnt].x, sideArray[g2dcnt].y+(sideArray[g2dcnt].height/2));
+        g2d.rotate(Road.aDownL, sideArray[g2dcnt].x-10, sideArray[g2dcnt].y+(sideArray[g2dcnt].height/2));
         g2d.fill(sideArray[g2dcnt]);
         sideGraphic.add(g2d);
         g2dcnt++;
         g2d = (Graphics2D) g.create();
         g2d.setColor(sideArray[g2dcnt].getColor());
-        g2d.rotate(Road.aDownR, sideArray[g2dcnt].x, sideArray[g2dcnt].y+(sideArray[g2dcnt].height/2));
+        g2d.rotate(Road.aDownR, sideArray[g2dcnt].x-10, sideArray[g2dcnt].y+(sideArray[g2dcnt].height/2));
         g2d.fill(sideArray[g2dcnt]);
         sideGraphic.add(g2d);
         g2dcnt++;
         g2d = (Graphics2D) g.create();
         g2d.setColor(sideArray[g2dcnt].getColor());
-        g2d.rotate(Road.aDownL, sideArray[g2dcnt].x, sideArray[g2dcnt].y+(sideArray[g2dcnt].height/2));
+        g2d.rotate(Road.aDownL, sideArray[g2dcnt].x-10, sideArray[g2dcnt].y+(sideArray[g2dcnt].height/2));
         g2d.fill(sideArray[g2dcnt]);
         sideGraphic.add(g2d);
         g2dcnt++;
         g2d = (Graphics2D) g.create();
         g2d.setColor(sideArray[g2dcnt].getColor());
-        g2d.rotate(Road.aDownR, sideArray[g2dcnt].x, sideArray[g2dcnt].y+(sideArray[g2dcnt].height/2));
+        g2d.rotate(Road.aDownR, sideArray[g2dcnt].x-10, sideArray[g2dcnt].y+(sideArray[g2dcnt].height/2));
         g2d.fill(sideArray[g2dcnt]);
         sideGraphic.add(g2d);
         g2dcnt++;
         g2d = (Graphics2D) g.create();
         g2d.setColor(sideArray[g2dcnt].getColor());
-        g2d.rotate(Road.aDownL, sideArray[g2dcnt].x, sideArray[g2dcnt].y+(sideArray[g2dcnt].height/2));
+        g2d.rotate(Road.aDownL, sideArray[g2dcnt].x-10, sideArray[g2dcnt].y+(sideArray[g2dcnt].height/2));
         g2d.fill(sideArray[g2dcnt]);
         sideGraphic.add(g2d);
         g2dcnt++;
         g2d = (Graphics2D) g.create();
         g2d.setColor(sideArray[g2dcnt].getColor());
-        g2d.rotate(Road.aDownR, sideArray[g2dcnt].x, sideArray[g2dcnt].y+(sideArray[g2dcnt].height/2));
+        g2d.rotate(Road.aDownR, sideArray[g2dcnt].x-10, sideArray[g2dcnt].y+(sideArray[g2dcnt].height/2));
         g2d.fill(sideArray[g2dcnt]);
         sideGraphic.add(g2d);
         g2dcnt++;
         g2d = (Graphics2D) g.create();
         g2d.setColor(sideArray[g2dcnt].getColor());
-        g2d.rotate(Road.aDownL, sideArray[g2dcnt].x, sideArray[g2dcnt].y+(sideArray[g2dcnt].height/2));
+        g2d.rotate(Road.aDownL, sideArray[g2dcnt].x-10, sideArray[g2dcnt].y+(sideArray[g2dcnt].height/2));
         g2d.fill(sideArray[g2dcnt]);
         sideGraphic.add(g2d);
         g2dcnt++;
         g2d = (Graphics2D) g.create();
         g2d.setColor(sideArray[g2dcnt].getColor());
-        g2d.rotate(Road.aDownR, sideArray[g2dcnt].x, sideArray[g2dcnt].y+(sideArray[g2dcnt].height/2));
+        g2d.rotate(Road.aDownR, sideArray[g2dcnt].x-10, sideArray[g2dcnt].y+(sideArray[g2dcnt].height/2));
         g2d.fill(sideArray[g2dcnt]);
         sideGraphic.add(g2d);
         g2dcnt++;
         g2d = (Graphics2D) g.create();
         g2d.setColor(sideArray[g2dcnt].getColor());
-        g2d.rotate(Road.aDownL, sideArray[g2dcnt].x, sideArray[g2dcnt].y+(sideArray[g2dcnt].height/2));
+        g2d.rotate(Road.aDownL, sideArray[g2dcnt].x-10, sideArray[g2dcnt].y+(sideArray[g2dcnt].height/2));
         g2d.fill(sideArray[g2dcnt]);
         sideGraphic.add(g2d);
         g2dcnt++;
         g2d = (Graphics2D) g.create();
         g2d.setColor(sideArray[g2dcnt].getColor());
-        g2d.rotate(Road.aDown, sideArray[g2dcnt].x, sideArray[g2dcnt].y+(sideArray[g2dcnt].height/2));
+        g2d.rotate(Road.aDown, sideArray[g2dcnt].x-10, sideArray[g2dcnt].y+(sideArray[g2dcnt].height/2));
         g2d.fill(sideArray[g2dcnt]);
         sideGraphic.add(g2d);
         g2dcnt++;
@@ -1139,61 +1143,61 @@ class Board extends JPanel {
         //50-60
         g2d = (Graphics2D) g.create();
         g2d.setColor(sideArray[g2dcnt].getColor());
-        g2d.rotate(Road.aDown, sideArray[g2dcnt].x, sideArray[g2dcnt].y+(sideArray[g2dcnt].height/2));
+        g2d.rotate(Road.aDown, sideArray[g2dcnt].x-10, sideArray[g2dcnt].y+(sideArray[g2dcnt].height/2));
         g2d.fill(sideArray[g2dcnt]);
         sideGraphic.add(g2d);
         g2dcnt++;
         g2d = (Graphics2D) g.create();
         g2d.setColor(sideArray[g2dcnt].getColor());
-        g2d.rotate(Road.aDown, sideArray[g2dcnt].x, sideArray[g2dcnt].y+(sideArray[g2dcnt].height/2));
+        g2d.rotate(Road.aDown, sideArray[g2dcnt].x-10, sideArray[g2dcnt].y+(sideArray[g2dcnt].height/2));
         g2d.fill(sideArray[g2dcnt]);
         sideGraphic.add(g2d);
         g2dcnt++;
         g2d = (Graphics2D) g.create();
         g2d.setColor(sideArray[g2dcnt].getColor());
-        g2d.rotate(Road.aDown, sideArray[g2dcnt].x, sideArray[g2dcnt].y+(sideArray[g2dcnt].height/2));
+        g2d.rotate(Road.aDown, sideArray[g2dcnt].x-10, sideArray[g2dcnt].y+(sideArray[g2dcnt].height/2));
         g2d.fill(sideArray[g2dcnt]);
         sideGraphic.add(g2d);
         g2dcnt++;
         g2d = (Graphics2D) g.create();
         g2d.setColor(sideArray[g2dcnt].getColor());
-        g2d.rotate(Road.aDown, sideArray[g2dcnt].x, sideArray[g2dcnt].y+(sideArray[g2dcnt].height/2));
+        g2d.rotate(Road.aDown, sideArray[g2dcnt].x-10, sideArray[g2dcnt].y+(sideArray[g2dcnt].height/2));
         g2d.fill(sideArray[g2dcnt]);
         sideGraphic.add(g2d);
         g2dcnt++;
         g2d = (Graphics2D) g.create();
         g2d.setColor(sideArray[g2dcnt].getColor());
-        g2d.rotate(Road.aDownR, sideArray[g2dcnt].x, sideArray[g2dcnt].y+(sideArray[g2dcnt].height/2));
+        g2d.rotate(Road.aDownR, sideArray[g2dcnt].x-10, sideArray[g2dcnt].y+(sideArray[g2dcnt].height/2));
         g2d.fill(sideArray[g2dcnt]);
         sideGraphic.add(g2d);
         g2dcnt++;
         g2d = (Graphics2D) g.create();
         g2d.setColor(sideArray[g2dcnt].getColor());
-        g2d.rotate(Road.aDownL, sideArray[g2dcnt].x, sideArray[g2dcnt].y+(sideArray[g2dcnt].height/2));
+        g2d.rotate(Road.aDownL, sideArray[g2dcnt].x-10, sideArray[g2dcnt].y+(sideArray[g2dcnt].height/2));
         g2d.fill(sideArray[g2dcnt]);
         sideGraphic.add(g2d);
         g2dcnt++;
         g2d = (Graphics2D) g.create();
         g2d.setColor(sideArray[g2dcnt].getColor());
-        g2d.rotate(Road.aDownR, sideArray[g2dcnt].x, sideArray[g2dcnt].y+(sideArray[g2dcnt].height/2));
+        g2d.rotate(Road.aDownR, sideArray[g2dcnt].x-10, sideArray[g2dcnt].y+(sideArray[g2dcnt].height/2));
         g2d.fill(sideArray[g2dcnt]);
         sideGraphic.add(g2d);
         g2dcnt++;
         g2d = (Graphics2D) g.create();
         g2d.setColor(sideArray[g2dcnt].getColor());
-        g2d.rotate(Road.aDownL, sideArray[g2dcnt].x, sideArray[g2dcnt].y+(sideArray[g2dcnt].height/2));
+        g2d.rotate(Road.aDownL, sideArray[g2dcnt].x-10, sideArray[g2dcnt].y+(sideArray[g2dcnt].height/2));
         g2d.fill(sideArray[g2dcnt]);
         sideGraphic.add(g2d);
         g2dcnt++;
         g2d = (Graphics2D) g.create();
         g2d.setColor(sideArray[g2dcnt].getColor());
-        g2d.rotate(Road.aDownR, sideArray[g2dcnt].x, sideArray[g2dcnt].y+(sideArray[g2dcnt].height/2));
+        g2d.rotate(Road.aDownR, sideArray[g2dcnt].x-10, sideArray[g2dcnt].y+(sideArray[g2dcnt].height/2));
         g2d.fill(sideArray[g2dcnt]);
         sideGraphic.add(g2d);
         g2dcnt++;
         g2d = (Graphics2D) g.create();
         g2d.setColor(sideArray[g2dcnt].getColor());
-        g2d.rotate(Road.aDownL, sideArray[g2dcnt].x, sideArray[g2dcnt].y+(sideArray[g2dcnt].height/2));
+        g2d.rotate(Road.aDownL, sideArray[g2dcnt].x-10, sideArray[g2dcnt].y+(sideArray[g2dcnt].height/2));
         g2d.fill(sideArray[g2dcnt]);
         sideGraphic.add(g2d);
         g2dcnt++;
@@ -1202,61 +1206,61 @@ class Board extends JPanel {
         //60-70
         g2d = (Graphics2D) g.create();
         g2d.setColor(sideArray[g2dcnt].getColor());
-        g2d.rotate(Road.aDownR, sideArray[g2dcnt].x, sideArray[g2dcnt].y+(sideArray[g2dcnt].height/2));
+        g2d.rotate(Road.aDownR, sideArray[g2dcnt].x-10, sideArray[g2dcnt].y+(sideArray[g2dcnt].height/2));
         g2d.fill(sideArray[g2dcnt]);
         sideGraphic.add(g2d);
         g2dcnt++;
         g2d = (Graphics2D) g.create();
         g2d.setColor(sideArray[g2dcnt].getColor());
-        g2d.rotate(Road.aDownL, sideArray[g2dcnt].x, sideArray[g2dcnt].y+(sideArray[g2dcnt].height/2));
+        g2d.rotate(Road.aDownL, sideArray[g2dcnt].x-10, sideArray[g2dcnt].y+(sideArray[g2dcnt].height/2));
         g2d.fill(sideArray[g2dcnt]);
         sideGraphic.add(g2d);
         g2dcnt++;
         g2d = (Graphics2D) g.create();
         g2d.setColor(sideArray[g2dcnt].getColor());
-        g2d.rotate(Road.aDown, sideArray[g2dcnt].x, sideArray[g2dcnt].y+(sideArray[g2dcnt].height/2));
+        g2d.rotate(Road.aDown, sideArray[g2dcnt].x-10, sideArray[g2dcnt].y+(sideArray[g2dcnt].height/2));
         g2d.fill(sideArray[g2dcnt]);
         sideGraphic.add(g2d);
         g2dcnt++;
         g2d = (Graphics2D) g.create();
         g2d.setColor(sideArray[g2dcnt].getColor());
-        g2d.rotate(Road.aDown, sideArray[g2dcnt].x, sideArray[g2dcnt].y+(sideArray[g2dcnt].height/2));
+        g2d.rotate(Road.aDown, sideArray[g2dcnt].x-10, sideArray[g2dcnt].y+(sideArray[g2dcnt].height/2));
         g2d.fill(sideArray[g2dcnt]);
         sideGraphic.add(g2d);
         g2dcnt++;
         g2d = (Graphics2D) g.create();
         g2d.setColor(sideArray[g2dcnt].getColor());
-        g2d.rotate(Road.aDown, sideArray[g2dcnt].x, sideArray[g2dcnt].y+(sideArray[g2dcnt].height/2));
+        g2d.rotate(Road.aDown, sideArray[g2dcnt].x-10, sideArray[g2dcnt].y+(sideArray[g2dcnt].height/2));
         g2d.fill(sideArray[g2dcnt]);
         sideGraphic.add(g2d);
         g2dcnt++;
         g2d = (Graphics2D) g.create();
         g2d.setColor(sideArray[g2dcnt].getColor());
-        g2d.rotate(Road.aDown, sideArray[g2dcnt].x, sideArray[g2dcnt].y+(sideArray[g2dcnt].height/2));
+        g2d.rotate(Road.aDown, sideArray[g2dcnt].x-10, sideArray[g2dcnt].y+(sideArray[g2dcnt].height/2));
         g2d.fill(sideArray[g2dcnt]);
         sideGraphic.add(g2d);
         g2dcnt++;
         g2d = (Graphics2D) g.create();
         g2d.setColor(sideArray[g2dcnt].getColor());
-        g2d.rotate(Road.aDownR, sideArray[g2dcnt].x, sideArray[g2dcnt].y+(sideArray[g2dcnt].height/2));
+        g2d.rotate(Road.aDownR, sideArray[g2dcnt].x-10, sideArray[g2dcnt].y+(sideArray[g2dcnt].height/2));
         g2d.fill(sideArray[g2dcnt]);
         sideGraphic.add(g2d);
         g2dcnt++;
         g2d = (Graphics2D) g.create();
         g2d.setColor(sideArray[g2dcnt].getColor());
-        g2d.rotate(Road.aDownL, sideArray[g2dcnt].x, sideArray[g2dcnt].y+(sideArray[g2dcnt].height/2));
+        g2d.rotate(Road.aDownL, sideArray[g2dcnt].x-10, sideArray[g2dcnt].y+(sideArray[g2dcnt].height/2));
         g2d.fill(sideArray[g2dcnt]);
         sideGraphic.add(g2d);
         g2dcnt++;
         g2d = (Graphics2D) g.create();
         g2d.setColor(sideArray[g2dcnt].getColor());
-        g2d.rotate(Road.aDownR, sideArray[g2dcnt].x, sideArray[g2dcnt].y+(sideArray[g2dcnt].height/2));
+        g2d.rotate(Road.aDownR, sideArray[g2dcnt].x-10, sideArray[g2dcnt].y+(sideArray[g2dcnt].height/2));
         g2d.fill(sideArray[g2dcnt]);
         sideGraphic.add(g2d);
         g2dcnt++;
         g2d = (Graphics2D) g.create();
         g2d.setColor(sideArray[g2dcnt].getColor());
-        g2d.rotate(Road.aDownL, sideArray[g2dcnt].x, sideArray[g2dcnt].y+(sideArray[g2dcnt].height/2));
+        g2d.rotate(Road.aDownL, sideArray[g2dcnt].x-10, sideArray[g2dcnt].y+(sideArray[g2dcnt].height/2));
         g2d.fill(sideArray[g2dcnt]);
         sideGraphic.add(g2d);
         g2dcnt++;
@@ -1265,16 +1269,24 @@ class Board extends JPanel {
         //71-72
         g2d = (Graphics2D) g.create();
         g2d.setColor(sideArray[g2dcnt].getColor());
-        g2d.rotate(Road.aDownR, sideArray[g2dcnt].x, sideArray[g2dcnt].y+(sideArray[g2dcnt].height/2));
+        g2d.rotate(Road.aDownR, sideArray[g2dcnt].x-10, sideArray[g2dcnt].y+(sideArray[g2dcnt].height/2));
         g2d.fill(sideArray[g2dcnt]);
         sideGraphic.add(g2d);
         g2dcnt++;
         g2d = (Graphics2D) g.create();
         g2d.setColor(sideArray[g2dcnt].getColor());
-        g2d.rotate(Road.aDownL, sideArray[g2dcnt].x, sideArray[g2dcnt].y+(sideArray[g2dcnt].height/2));
+        g2d.rotate(Road.aDownL, sideArray[g2dcnt].x -10, sideArray[g2dcnt].y+(sideArray[g2dcnt].height/2));
         g2d.fill(sideArray[g2dcnt]);
         sideGraphic.add(g2d);
         g2dcnt++;
+        
+        
+        //prepare the road objects hitboxes
+        for(int i = 0;i<sideArray.length;i++)
+        {
+            sideArray[i].setGraphics2D(sideGraphic.get(i));
+            sideArray[i].setTranslation();
+        }
         
         
         for (int i = 0; i < 54; i++) {
@@ -1336,4 +1348,49 @@ class Board extends JPanel {
 			assessCoordsReleased();
 		}
 	}
+        private class RoadColorChange extends MouseAdapter
+        {
+            public RoadColorChange()
+            {
+                
+            }
+            public void mousePressed(MouseEvent e)
+            {
+                // use corect color check if can build neibor road
+                for (int i = 0; i < sideArray.length; i++)
+                {
+                    if(sideArray[i].hit(e.getX(), e.getY()))
+                    {
+                        //sideArray[i].setColor(Color.red);
+                        
+                        //check whos turn
+                        
+                        //check if neihbor road of that color
+                        boolean canBuild = false;//at end check if road is alredy owned or do it now and break/present error message.
+                        //Arraylist<road> sides= sideArray[i].getToAdjacentSides();
+                        for(int j=0;j<sideArray[i].getSidesSize();j++)
+                        {
+                            //iff any road ajacent has the same ownership as the player -> can build is true
+                            if(sideArray[i].getSidesElement(j).getOwner()==client.currentPlayer)canBuild=true;
+                            //also check if adjasent setelment is owned
+                        }
+                        
+                        
+                        /*if(canBuild)
+                        {
+                            sideArray[i].setOwner(currentPlayer);
+                        }//*/
+                    }
+                }
+            }
+        }
+        /*
+        public static void main(String Args[]) {
+        JFrame frame = new JFrame();
+        frame.add(new Board());
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setSize(850, 850);
+        frame.setVisible(true);
+        }
+        //*/
 }
