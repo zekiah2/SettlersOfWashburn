@@ -262,7 +262,12 @@ public class Client extends JFrame {
                             out.println(line.replace("/trade", "/tradeDeclined"));
                             System.out.println(line.replace("/trade", "/tradeDeclined"));
                         }*/
-                    } else {
+                    }
+                    else if(line.startsWith("/addToPlayerList")){
+                        String[] temp = line.split("\\s+");
+                        game.playerPanel.playersList.append(temp[1]+"               "+temp[2]+"\n");
+                    }
+                    else {
                         if (gameState.equals("lobby")) {
                             lobby.chatTA.append("\n" + line);
                         } else {

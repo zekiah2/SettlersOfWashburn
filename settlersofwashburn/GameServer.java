@@ -83,9 +83,10 @@ public class GameServer {
                                             for (i = 0; i < players.size(); i++) {
                                                 for (int k = 0; k < players.size(); k++) {
                                                     players.get(i).getPrintWriter().println(players.get(k).getName() + " has been assigned " + players.get(k).getColorString());
+                                                    players.get(i).getPrintWriter().println("/addToPlayerList "+players.get(k).getName() + " " + players.get(k).getColorString());
                                                 }
                                             }
-
+                                            
                                       //  }
                                      //   synchronized (players) {
                                             for (i = 0; i < players.size(); i++) {
