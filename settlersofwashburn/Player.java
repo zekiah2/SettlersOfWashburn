@@ -66,4 +66,24 @@ public class Player {
             return "red";
         }
     }
+    public int getColorInt() {
+        return color;
+    }
+    public int colorStringToInt(String color){
+        if(color.equals("white")){
+            return 0;
+        }
+        if(color.equals("orange")){
+            return 1;
+        }
+        if(color.equals("blue")){
+            return 2;
+        }
+        if(color.equals("red")){
+            return 3;
+        }
+        else{
+            return 4;
+        }
+    }
 }

@@ -5,7 +5,7 @@
  */
 package settlersofwashburn;
 
-import java.awt.Color; 
+import java.awt.Color;
 import java.util.ArrayList;
 import javax.swing.*;
 import java.awt.*;
@@ -17,114 +17,150 @@ import java.awt.event.*;
  */
 class Settlement extends Component {
 
-    		private ArrayList<Integer> adjacentSides;
-		private ArrayList<Integer> adjacentPoints;
-		private ArrayList<Integer> adjacentTiles;
-		private double[] boardCoords;
-		private Color pointColor;
+    private ArrayList<Integer> adjacentSides;
+    private ArrayList<Integer> adjacentPoints;
+    private ArrayList<Integer> adjacentTiles;
+    private double[] boardCoords;
+    private Color pointColor;
+    private int owner = -1;
+    private Board board;
 
-		public Settlement()
-		{
-			adjacentSides = new ArrayList<Integer>();
-			adjacentPoints = new ArrayList<Integer>();
-			adjacentTiles = new ArrayList<Integer>();
-			boardCoords = new double[2];
-			pointColor = Color.BLACK;
-		}
-		
-		public void add2Sides(int side1, int side2)
-		{
-			adjacentSides.add(side1);
-			adjacentSides.add(side2);
-		}
-		
-		public void add3Sides(int side1, int side2, int side3)
-		{
-			adjacentSides.add(side1);
-			adjacentSides.add(side2);
-			adjacentSides.add(side3);
-		}
+    public Settlement(Board board) {
+        adjacentSides = new ArrayList<Integer>();
+        adjacentPoints = new ArrayList<Integer>();
+        adjacentTiles = new ArrayList<Integer>();
+        boardCoords = new double[2];
+        pointColor = Color.BLACK;
+        this.board = board;
+    }
 
-		public void add2Points(int point1, int point2)
-		{
-			adjacentPoints.add(point1);
-			adjacentPoints.add(point2);
-		}
-		
-		public void add3Points(int point1, int point2, int point3)
-		{
-			adjacentPoints.add(point1);
-			adjacentPoints.add(point2);
-			adjacentPoints.add(point3);
-			
-		}
-		
-		public void add1Tiles(int tile)
-		{
-			adjacentTiles.add(tile);
-		}
-		
-		public void add2Tiles(int tile1, int tile2)
-		{
-			adjacentTiles.add(tile1);
-			adjacentTiles.add(tile2);
-		}
-		
-		public void add3Tiles(int tile1, int tile2, int tile3)
-		{
-			adjacentTiles.add(tile1);
-			adjacentTiles.add(tile2);
-			adjacentTiles.add(tile3);
-		}
-		
-		public int getSidesSize()
-		{
-			return adjacentSides.size();
-		}
-		
-		public int getPointsSize()
-		{
-			return adjacentPoints.size();
-		}
-		
-		public int getTilesSize()
-		{
-			return adjacentTiles.size();
-		}
-		
-		public int getSidesElement(int element)
-		{
-			return adjacentSides.get(element);
-		}
-		
-		public int getPointsElement(int element)
-		{
-			return adjacentPoints.get(element);
-		}
-		
-		public int getTilesElement(int element)
-		{
-			return adjacentTiles.get(element);
-		}
-		
-		public void setBoardCoords(double x, double y)
-		{
-			boardCoords[0] = x;
-			boardCoords[1] = y;
-		}
+    public void add2Sides(int side1, int side2) {
+        adjacentSides.add(side1);
+        adjacentSides.add(side2);
+    }
 
-		public double[] getBoardCoords()
-		{
-			return boardCoords;
-		}
+    public void add3Sides(int side1, int side2, int side3) {
+        adjacentSides.add(side1);
+        adjacentSides.add(side2);
+        adjacentSides.add(side3);
+    }
 
-		public void setSettlementColor(Color pointColor)
-		{
-			this.pointColor = pointColor;
-		}
-		
-		public Color getSettlementColor()
-		{
-			return pointColor;
-		}		
+    public void add2Points(int point1, int point2) {
+        adjacentPoints.add(point1);
+        adjacentPoints.add(point2);
+    }
+
+    public void add3Points(int point1, int point2, int point3) {
+        adjacentPoints.add(point1);
+        adjacentPoints.add(point2);
+        adjacentPoints.add(point3);
+
+    }
+
+    public void add1Tiles(int tile) {
+        adjacentTiles.add(tile);
+    }
+
+    public void add2Tiles(int tile1, int tile2) {
+        adjacentTiles.add(tile1);
+        adjacentTiles.add(tile2);
+    }
+
+    public void add3Tiles(int tile1, int tile2, int tile3) {
+        adjacentTiles.add(tile1);
+        adjacentTiles.add(tile2);
+        adjacentTiles.add(tile3);
+    }
+
+    public int getSidesSize() {
+        return adjacentSides.size();
+    }
+
+    public int getPointsSize() {
+        return adjacentPoints.size();
+    }
+
+    public int getTilesSize() {
+        return adjacentTiles.size();
+    }
+
+    public int getSidesElement(int element) {
+        return adjacentSides.get(element);
+    }
+
+    public int getPointsElement(int element) {
+        return adjacentPoints.get(element);
+    }
+
+    public int getTilesElement(int element) {
+        return adjacentTiles.get(element);
+    }
+
+    public void setBoardCoords(double x, double y) {
+        boardCoords[0] = x;
+        boardCoords[1] = y;
+    }
+
+    public double[] getBoardCoords() {
+        return boardCoords;
+    }
+
+    public void setSettlementColor(Color pointColor) {
+        this.pointColor = pointColor;
+    }
+
+    public Color getSettlementColor() {
+        return pointColor;
+    }
+
+    public void setOwner(int owner) {
+        this.owner = owner;
+    }
+
+    public int getOwner() {
+        return owner;
+    }
+
+    public boolean checkAdjacentSides() {
+        boolean roadConnected = false;
+        boolean allUnOwned = true;
+        ArrayList<Integer> owners = new ArrayList<Integer>();
+        for (int i = 0; i < this.getSidesSize(); i++) {
+            System.out.println("Side Owner" + board.sideArray[this.adjacentSides.get(i)].getOwner());
+            System.out.println("Point owner " + this.getOwner());
+
+            owners.add(board.sideArray[this.adjacentSides.get(i)].getOwner());
+        }
+        for (int i = 0; i < owners.size(); i++) {
+            {
+                System.out.println("size " + owners.size());
+                System.out.println("i " + i);
+                System.out.println("owners array " + owners.get(i));
+                if (owners.get(i) != -1) {
+                    allUnOwned = false;
+                }
+            }
+        }
+        if (!allUnOwned) {
+            for (int i = 0; i < this.getSidesSize(); i++) {
+                System.out.println("Not all unowned check " + board.sideArray[this.adjacentSides.get(i)].getOwner());
+                if (board.sideArray[this.adjacentSides.get(i)].getOwner() == this.getOwner()) {
+                    roadConnected = true;
+                    break;
+                }
+            }
+        }
+        return roadConnected;
+    }
+
+    public boolean checkAdjacentPoints() {
+        boolean hasNoAdjacentPoint = true;
+        for (int i = 0; i < this.getPointsSize(); i++) {
+            if (board.pointArray[this.adjacentPoints.get(i)].getOwner() > -1) {
+                hasNoAdjacentPoint = false;
+                break;
+            }
+        }
+        return hasNoAdjacentPoint;
+    }
 }
