@@ -100,6 +100,7 @@ public class Client extends JFrame {
                             game.phPanel.nextTurn.setEnabled(true);
                         }
                         game.chatPanel.Chat.append("current players is " + temp[2]);
+                        game.chatPanel.Chat.setCaretPosition(game.chatPanel.Chat.getDocument().getLength());
                     } else if (line.startsWith("/addCard ")) {
                         System.out.println(line);
                         String[] temp = line.split("\\s+");
@@ -272,6 +273,7 @@ public class Client extends JFrame {
                             lobby.chatTA.append("\n" + line);
                         } else {
                             game.chatPanel.Chat.append("\n" + line);
+                            game.chatPanel.Chat.setCaretPosition(game.chatPanel.Chat.getDocument().getLength());
                         }
                     }
                 }
