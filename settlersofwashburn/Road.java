@@ -174,9 +174,37 @@ public class Road extends Rectangle
     {
         color = t;
     }
+    public void setColor(int t)
+    {
+        //WHITE = 0 ORANGE = 1 BLUE = 2 RED = 3
+        switch(t){
+            case 0:
+                this.setColor(Color.WHITE);
+                break;
+            case 1:
+                this.setColor(Color.ORANGE);
+                break;
+            case 2:
+                this.setColor(Color.BLUE);
+                break;
+            case 3:
+                this.setColor(Color.RED);
+                break;
+            default:
+                this.setColor(Color.BLACK);
+        }
+    }
     public void setTranslation()
     {
         hitBox = g2d.getTransform().createTransformedShape(this);
+    }
+    public void setTranslation(Graphics2D t)
+    {
+        hitBox = t.getTransform().createTransformedShape(this);
+    }
+    public Shape getHitBox()
+    {
+        return hitBox;
     }
     public boolean hit(Point2D p)
     {
@@ -194,7 +222,9 @@ public class Road extends Rectangle
     }
     public void setOwner(int t)
     {
+        owner = t;
         //WHITE = 0 ORANGE = 1 BLUE = 2 RED = 3
+        /*
         switch(t){
             case 0:
                 this.setColor(Color.WHITE);
@@ -216,7 +246,7 @@ public class Road extends Rectangle
                 this.setColor(Color.BLACK);
                 owner = -1;
         }
-        
+        */
         
         
     }

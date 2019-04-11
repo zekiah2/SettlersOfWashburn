@@ -22,7 +22,8 @@ class Board extends JPanel {
 	private double[] eventCoords;
 	private double[] coords;
     private Client client;
-        
+    private int offsetX=0;
+    private int offsetY=0;
     
 
     public Board(Client eclient) {
@@ -1281,12 +1282,21 @@ class Board extends JPanel {
         g2dcnt++;
         
         
+        
+        //g2d = (Graphics2D) g.create();//for debug
         //prepare the road objects hitboxes
         for(int i = 0;i<sideArray.length;i++)
         {
             sideArray[i].setGraphics2D(sideGraphic.get(i));
             sideArray[i].setTranslation();
-        }
+            //g2d.setColor(Color.CYAN);//for debug
+            //g2d.fill(sideArray[i].getHitBox());//fordebug
+        }//*/
+        offsetX= (int)sideArray[0].getHitBox().getBounds2D().getCenterX()-242;
+        offsetY= (int)sideArray[0].getHitBox().getBounds2D().getCenterY()-60;
+        
+        //System.out.println(sideArray[0].getCenterX()+"  "+sideArray[0].getCenterY());
+        //System.out.println(sideArray[0].getHitBox().getBounds2D().getCenterX()+"  "+sideArray[0].getHitBox().getBounds2D().getCenterY());
         
         
         for (int i = 0; i < 54; i++) {
@@ -1357,32 +1367,67 @@ class Board extends JPanel {
             public void mousePressed(MouseEvent e)
             {
                 // use corect color check if can build neibor road
+                System.out.print(e.getX());
+                System.out.println("  "+e.getY());
                 for (int i = 0; i < sideArray.length; i++)
                 {
-                    if(sideArray[i].hit(e.getX(), e.getY()))
+                    //System.out.println(i);
+                    //System.out.println(sideArray[i].getOwner());
+                    if(sideArray[i].hit(e.getX()+offsetX, e.getY()+offsetY))
+                    //if(sideArray[i].hit(e.getX()+422, e.getY()+23))
                     {
-                        //sideArray[i].setColor(Color.red);
+                        System.out.println("HIT!!!!   "+i);
                         
-                        //check whos turn
+                        
                         
                         //check if neihbor road of that color
                         boolean canBuild = false;//at end check if road is alredy owned or do it now and break/present error message.
-                        //Arraylist<road> sides= sideArray[i].getToAdjacentSides();
+                        
                         for(int j=0;j<sideArray[i].getSidesSize();j++)
                         {
                             //iff any road ajacent has the same ownership as the player -> can build is true
                             if(sideArray[i].getSidesElement(j).getOwner()==client.currentPlayer)canBuild=true;
+                            //System.out.println(sideArray[i].getSidesElement(j).getOwner());
+                            System.out.println(sideArray[i].getSidesElement(j).getOwner());
                             //also check if adjasent setelment is owned
                         }
                         
                         
-                        /*if(canBuild)
+                        if(pointArray[sideArray[i].getPointsElement(0)].getOwner()==client.currentPlayer)canBuild=true;
+                        if(pointArray[sideArray[i].getPointsElement(1)].getOwner()==client.currentPlayer)canBuild=true;
+                        
+                        System.out.println("point ownweship 0 :"+pointArray[sideArray[i].getPointsElement(0)].getOwner() );
+                        System.out.println("point ownweship 1 :"+pointArray[sideArray[i].getPointsElement(1)].getOwner() );
+                        
+                        
+                        if(sideArray[i].getOwner()!= -1) canBuild = false;
+                        System.out.println(canBuild);
+                        if(canBuild)
                         {
-                            sideArray[i].setOwner(currentPlayer);
+                            System.out.println("try to purchased road");
+                            
+                            //sideArray[i].setOwner(client.currentPlayer);
+                            //sideArray[i].setColor(client.currentPlayer);
+                            //send command to the server
+                            if(client.currentPlayer==0){
+                            client.writeOutput("/purchaseRoad "+i+" white");
+                            }
+                            if(client.currentPlayer==1){
+                            client.writeOutput("/purchaseRoad "+i+" orange");
+                            }
+                            if(client.currentPlayer==2){
+                            client.writeOutput("/purchaseRoad "+i+" blue");
+                            }
+                            if(client.currentPlayer==3){
+                            client.writeOutput("/purchaseRoad "+i+" red");
+                            }
                         }//*/
+                        
                     }
                 }
+                repaint();
             }
+            
         }
         /*
         public static void main(String Args[]) {

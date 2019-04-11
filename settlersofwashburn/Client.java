@@ -54,21 +54,27 @@ public class Client extends JFrame {
                         game.gbPanel.board.pointArray[12].setSettlementColor(Color.WHITE);
                         game.gbPanel.board.pointArray[12].setOwner(Player.WHITE);
                         game.gbPanel.board.sideArray[12].setColor(Color.WHITE);
+                        game.gbPanel.board.sideArray[12].setOwner(Player.WHITE);
                         game.gbPanel.board.pointArray[41].setSettlementColor(Color.WHITE);
                         game.gbPanel.board.pointArray[41].setOwner(Player.WHITE);
                         game.gbPanel.board.sideArray[59].setColor(Color.WHITE);
+                        game.gbPanel.board.sideArray[59].setOwner(Player.WHITE);
                         game.gbPanel.board.pointArray[10].setSettlementColor(Color.ORANGE);
                         game.gbPanel.board.pointArray[10].setOwner(Player.ORANGE);
                         game.gbPanel.board.sideArray[16].setColor(Color.ORANGE);
+                        game.gbPanel.board.sideArray[16].setOwner(Player.ORANGE);
                         game.gbPanel.board.pointArray[25].setSettlementColor(Color.ORANGE);
                         game.gbPanel.board.pointArray[25].setOwner(Player.ORANGE);
                         game.gbPanel.board.sideArray[37].setColor(Color.ORANGE);
+                        game.gbPanel.board.sideArray[37].setOwner(Player.ORANGE);
                         game.gbPanel.board.pointArray[39].setSettlementColor(Color.BLUE);
                         game.gbPanel.board.pointArray[39].setOwner(Player.BLUE);
                         game.gbPanel.board.sideArray[50].setColor(Color.BLUE);
+                        game.gbPanel.board.sideArray[50].setOwner(Player.BLUE);
                         game.gbPanel.board.pointArray[49].setSettlementColor(Color.BLUE);
                         game.gbPanel.board.pointArray[49].setOwner(Player.BLUE);
                         game.gbPanel.board.sideArray[69].setColor(Color.BLUE);
+                        game.gbPanel.board.sideArray[69].setOwner(Player.BLUE);
                         game.phPanel.vpPanel.addCtr();
                         game.phPanel.vpPanel.addCtr();
                         String[] temp = line.split("\\s+");
@@ -76,9 +82,11 @@ public class Client extends JFrame {
                             game.gbPanel.board.pointArray[18].setSettlementColor(Color.RED);
                             game.gbPanel.board.pointArray[18].setOwner(Player.RED);
                             game.gbPanel.board.sideArray[20].setColor(Color.RED);
+                            game.gbPanel.board.sideArray[20].setOwner(Player.RED);
                             game.gbPanel.board.pointArray[30].setSettlementColor(Color.RED);
                             game.gbPanel.board.pointArray[30].setOwner(Player.RED);
                             game.gbPanel.board.sideArray[36].setColor(Color.RED);
+                            game.gbPanel.board.sideArray[36].setOwner(Player.RED);
                         }
                         currentPlayer = Integer.parseInt(temp[2]);
                         game.phPanel.nextTurn.setEnabled(false);
@@ -287,7 +295,10 @@ public class Client extends JFrame {
             }
         }
     }
-
+    public void writeOutput(String buildCommand)
+    {
+        out.println(buildCommand);
+    }
     private class KeyHandler extends KeyAdapter {
 
         public void keyTyped(KeyEvent e) {
